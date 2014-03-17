@@ -1,0 +1,27 @@
+package com.ncsu.ubl.commons;
+
+public interface Constants {
+	public static final String NUMBER_OF_VM = "number_of_vm";
+	public static final String IP_ADDRESS_LIST = "ip_address_list";
+	public static final String NEXT_ITERATION_TIME ="next_iteration_time";
+	public static final String WEIGHT_NUMBER = "weight_number";
+	public static final String WEB_SERVICE_PATH = "web_service_path";
+	public static final String WEB_SERVICE_PORT = "web_service_port";
+	public static final String HTTP_GET = "GET";
+	public static final String OUTPUT_FILENAME = "output_filename";
+	public static final String OUTPUT_FILEPATH = "output_file_path";
+	public static final String SPLIT_CHAR = " ";
+	public static final String LEARN_FILE_LOCATION = "learn_file_location";
+	public static final String LEARN_FILE_NAME = "learn_file_name";
+	public static final String TOPOLOGY_MODEL = "topology_model";
+	public static final String ROWS = "rows";
+	public static final String COLS = "cols";
+	public static final String RADIUS = "radius";
+	public static final String NUMBER_OF_WEIGHTS = "number_of_weights";
+	public static final String MAX_WEIGHT = "max_weight";
+	public static final String TRAIN_METRIC_TYPE = "train_metric_type";
+	public static final String MAX_ITERATION = "max_iteration";
+	public static final String PREDICT_METRIC_TYPE = "predict_metric_type";
+	public static final String LEARN_FACTOR = "learning_factor";
+	public static final String NEIGHBOUR_FACTOR = "neighbour_factor";
+}
