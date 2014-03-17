@@ -1,0 +1,600 @@
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437    0.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  115.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  125.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  133.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  124.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  131.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  124.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  131.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  126.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  139.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  130.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  130.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  134.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  130.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  127.8    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.6    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.4    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.7    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  130.1    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.0    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  128.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.9    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.3    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.2    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
+xentop - 01:25:59   Xen 3.1.2-164.el5
+2 domains: 1 running, 1 blocked, 0 paused, 0 crashed, 0 dying, 0 shutdown 
+Mem: 4193588k total, 3168972k used, 1024616k free    CPUs: 2 @ 3000MHz
+      NAME  STATE   CPU(sec) CPU(%)     MEM(k) MEM(%)  MAXMEM(k) MAXMEM(%) VCPUS NETS NETTX(k) NETRX(k) VBDS   VBD_OO   VBD_RD   VBD_WR SSID
+  Domain-0 -----r        437  129.5    2035932   48.5   no limit       n/a     2    5    11841    70630    0        0        0        0    0
+systems_server2 --b---        227    0.0    1023780   24.4    2048000      48.8     2    1      157      195    0        0        0        0    0
