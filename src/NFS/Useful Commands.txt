@@ -1,0 +1,15 @@
+-Firewall rule changes
+	"system-config-securitylevel" 
+
+-TO check for IP address:
+	"/sbin/ifconfig" for IP address
+
+-TO check for OS version:
+	"cat /etc/*-release"
+	"lsb_release -a"
+	
+-"chkconfig --list"
+
+-"printenv"
+
+-"uname -a"
