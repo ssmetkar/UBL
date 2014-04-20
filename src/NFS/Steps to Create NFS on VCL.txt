@@ -1,0 +1,138 @@
+Xen is running on CentOS release 5.2. The system S is virtualized for CentOS release 5.2 also.
+NFS Server:IP address: 192.168.122.1 (Dom 0)
+NFS Client:IP address: 192.168.122.51(System S)
+------------------------------------------------------------------------------------------------------------------------------------------------
+1.Installing NFS
+ 
+Server: PATH=$PATH:/sbin
+		PATH=$PATH:/usr/sbin
+		yum install nfs-utils nfs-utils-lib
+		chkconfig --levels 235 nfs on 
+		/etc/init.d/nfs start
+ 
+Client: yum install nfs-utils nfs-utils-lib
+
+2. Exporting Directories On The Server:Say we want  to make the directories /home and /var/nfs accessible to the client System S.Hence we must "export" 
+   them on the server.
+
+Server: mkdir /var/nfs
+		chown 65534:65534 /var/nfs
+		chmod 755 /var/nfs
+
+		nano /etc/exports
+			/home           192.168.122.51(rw,sync,no_root_squash,no_subtree_check)
+			/var/nfs        192.168.122.51(rw,sync,no_subtree_check)
+		
+		exportfs -a
+
+3. Mounting The NFS Shares On The Client(May run into issues here. Refer fix for it by scorlling down)
+
+client:
+	mkdir -p /mnt/nfs/home
+	mkdir -p /mnt/nfs/var/nfs
+	
+	mount 192.168.122.1:/home /mnt/nfs/home
+	mount 192.168.122.1:/var/nfs /mnt/nfs/var/nfs
+	
+	You should now see the two NFS shares in the outputs of "df -h" & "mount"
+
+4. Testing
+client:
+		touch /mnt/nfs/home/test.txt
+
+server: when we run below command we shud see the files
+		ls -l /home/
+		
+-----------------------------------------------------------------------------------------------------------------------------------------	
+Fix for Mount issue we may run into in VCL:
+-----------------------------------------------------------------------------------------------------------------------------------------	
+ 
+But mount 192.168.122.1:/home /mnt/nfs/home gives no host found error when run(mount.nfs: mount to NFS server failed: System Error: No route to host.) .We can fix it by below steps:
+
+1.Edit /etc/sysconfig/nfs and uncomment/add the following lines(by removing #):
+	LOCKD_TCPPORT=32803
+	LOCKD_UDPPORT=32769
+	MOUNTD_PORT=892
+	STATD_PORT=662
+	STATD_OUTGOING_PORT=2020
+
+2.Restart the nfs services:
+	sudo /etc/init.d/nfs restart
+	sudo /etc/init.d/nfslock restart
+
+3.check if the ports are open as expected:
+	"rpcinfo -p localhost"
+	
+	program vers proto   port  service
+	100000    4   tcp    111  portmapper
+	100000    3   tcp    111  portmapper
+	100000    2   tcp    111  portmapper
+	100000    4   udp    111  portmapper
+	100000    3   udp    111  portmapper
+	100000    2   udp    111  portmapper
+	100021    1   udp  32769  nlockmgr
+	100021    3   udp  32769  nlockmgr
+	100021    4   udp  32769  nlockmgr
+	100021    1   tcp  32803  nlockmgr
+	100021    3   tcp  32803  nlockmgr
+	100021    4   tcp  32803  nlockmgr
+	100011    1   udp    875  rquotad
+	100011    2   udp    875  rquotad
+	100011    1   tcp    875  rquotad
+	100011    2   tcp    875  rquotad
+	100003    2   tcp   2049  nfs
+	100003    3   tcp   2049  nfs
+	100003    4   tcp   2049  nfs
+	100227    2   tcp   2049  nfs_acl
+	100227    3   tcp   2049  nfs_acl
+	100003    2   udp   2049  nfs
+	100003    3   udp   2049  nfs
+	100003    4   udp   2049  nfs
+	100227    2   udp   2049  nfs_acl
+	100227    3   udp   2049  nfs_acl
+	100005    1   udp    892  mountd
+	100005    1   tcp    892  mountd
+	100005    2   udp    892  mountd
+	100005    2   tcp    892  mountd
+	100005    3   udp    892  mountd
+	100005    3   tcp    892  mountd
+	100024    1   udp    662  status
+	100024    1   tcp    662  status
+
+4.edit /etc/sysconfig/iptables and add the following rules:
+ "nano /etc/sysconfig/iptables_pre_22"
+
+ -A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 111 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 111 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 32769 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 32803 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 662 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 662 -j ACCEPT
+
+5.Restart iptables:
+
+"sudo service iptables restart"
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Issues  with mounting the files:
+ http://notepad2.blogspot.com/2012/04/mountnfs-mount-to-nfs-server-failed.html
+
+Steps:
+ http://www.howtoforge.com/setting-up-an-nfs-server-and-client-on-centos-5.5
+ 
+ 
+Other resources:
+http://www.techrepublic.com/blog/linux-and-open-source/set-up-easy-file-sharing-with-nfs-on-linux/
+http://www.tldp.org/HOWTO/NFS-HOWTO/server.html
+http://how-to.linuxcareer.com/how-to-configure-nfs-on-linux
+http://tldp.org/HOWTO/NFS-HOWTO/security.html
+http://linux-commands.wikidot.com/howto-s:share-folder
+http://www.wikihow.com/Share-Files-Between-Linux-Computers-Using-NFS
+http://www.tecmint.com/how-to-setup-nfs-server-in-linux/
+ 
