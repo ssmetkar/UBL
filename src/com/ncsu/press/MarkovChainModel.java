@@ -1,27 +1,26 @@
-import java.sql.Time;
+package com.ncsu.press;
 
 import org.ejml.simple.SimpleMatrix;
 
-
 public class MarkovChainModel{
-		
+	
 		private Integer num_of_states;
 		private SimpleMatrix transition_matrix;
 		
-		MarkovChainModel()
+		public MarkovChainModel()
 		{
 			num_of_states = 0;
 			transition_matrix = null;
 		}
 		
-		MarkovChainModel(Integer stateNum)
+		public MarkovChainModel(Integer stateNum)
 		{
 			num_of_states = stateNum;
 			transition_matrix = new SimpleMatrix(stateNum, stateNum);
 			//Transition Matrix elements are initialized to 0
 		}
 		
-		int getBinNumber (Float org_val)
+		public int getBinNumber (double org_val)
 		{
 			if (org_val >100 || org_val<0)
 			{
@@ -31,12 +30,12 @@ public class MarkovChainModel{
 			return (int) Math.floor(org_val*num_of_states/100);
 		}
 		
-		int getOrgValFromBinNumber(int bin_number)
+		public int getOrgValFromBinNumber(int bin_number)
 		{
 			return  (int) Math.ceil((bin_number+1)*100/num_of_states);
 		}
 		
-		void trainMarkovChainModel (Float[] input)
+		public void trainMarkovChainModel (double[] input)
 		{
 			int input_size = input.length;
 			int from_state, to_state;
@@ -80,7 +79,7 @@ public class MarkovChainModel{
 		}
 		
 		
-		int predictState(int from_state, int number_of_steps)
+		public int predictState(int from_state, int number_of_steps)
 		{
 			long lStartTime = System.currentTimeMillis();
 			int from_bin = getBinNumber((float)from_state);
