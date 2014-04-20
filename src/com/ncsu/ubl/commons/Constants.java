@@ -2,7 +2,7 @@ package com.ncsu.ubl.commons;
 
 public interface Constants {
 	public static final String NUMBER_OF_VM = "number_of_vm";
-	public static final String IP_ADDRESS_LIST = "ip_address_list";
+	public static final String IP_ADDRESS = "ip_address";
 	public static final String NEXT_ITERATION_TIME ="next_iteration_time";
 	public static final String WEIGHT_NUMBER = "weight_number";
 	public static final String WEB_SERVICE_PATH = "web_service_path";
@@ -24,4 +24,12 @@ public interface Constants {
 	public static final String PREDICT_METRIC_TYPE = "predict_metric_type";
 	public static final String LEARN_FACTOR = "learning_factor";
 	public static final String NEIGHBOUR_FACTOR = "neighbour_factor";
+	public static final String K_FOLD_VALUE = "k_fold_value";
+	public static final String DELIMITER = "delimiter";
+	public static final String PYTHON_FILE = "python_file";
+	public static final String NORMALIZED_FILE = "normalized_file";
+	public static final String NORMAL_NEURONS = "normal_neurons";
+	public static final int ABNORMAL = 1;
+	public static final int NORMAL = 0;
+	public static final String PREDICT_DATA_FILE = "predict_data_file";
 }

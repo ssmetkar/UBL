@@ -15,34 +15,38 @@ import com.ncsu.jknnl.topology.TopologyModel;
 import com.ncsu.ubl.master.Controller;
 
 public class ComputationUtility {
-
-	public static int thresholdValue;
 	
-	public static int calculateThreshold(NetworkModel networkModel)
+	public static double calculateThreshold(NetworkModel networkModel)
 	{
-		thresholdValue = 0;
+		double thresholdValue = 0;
 		TopologyModel topologyModel = networkModel.getTopology();
-		TreeMap<java.lang.Integer, java.lang.Integer> neighbornhood;
-		Set<Integer> keySets;
+		TreeMap<java.lang.Integer, java.lang.Integer> neighbornhood = null;
+		Set<Integer> keySets = null;
 		int neighbourNeuron;
-		int manhattanDist[] = new int[networkModel.getNumbersOfNeurons()];
-		int tempDistance = 0,neighborDistance = 0;
+		double manhattanDist[] = new double[networkModel.getNumbersOfNeurons()];
+		double tempDistance = 0,neighborDistance = 0;
 		
 		for(int cnt = 0; cnt < networkModel.getNumbersOfNeurons() ; cnt++)
 		{
-			keySets = topologyModel.getNeighbourhood(cnt).descendingKeySet();
-			Iterator<Integer> setIterator= keySets.iterator();
-			neighborDistance = 0;
-			while(setIterator.hasNext())
+			keySets = topologyModel.getNeighbours(cnt).descendingKeySet();
+			
+			if(keySets != null)
 			{
-				neighbourNeuron = setIterator.next();
-				neighborDistance += calculateDistance(networkModel.getNeuron(cnt),networkModel.getNeuron(neighbourNeuron));
+				Iterator<Integer> setIterator= keySets.iterator();
+				neighborDistance = 0;
+				while(setIterator.hasNext())
+				{
+					neighbourNeuron = setIterator.next();
+					neighborDistance += calculateDistance(networkModel.getNeuron(cnt),networkModel.getNeuron(neighbourNeuron));
+				}
+				manhattanDist[cnt] = neighborDistance;
 			}
-			manhattanDist[cnt] = neighborDistance; 
+			 
 		}
 		
-		TreeMap<Integer,Integer> uniqueElementMap = new TreeMap<Integer,Integer>();
-		for(int cnt:manhattanDist)
+		TreeMap<Double,Integer> uniqueElementMap = new TreeMap<Double,Integer>();
+		
+		for(double cnt:manhattanDist)
 		{
 			if(uniqueElementMap.get(cnt)== null)
 			{
@@ -50,15 +54,15 @@ public class ComputationUtility {
 			}
 		}
 		
-		ArrayList<Integer> uniqueElements = new ArrayList<Integer>(uniqueElementMap.keySet());
+		ArrayList<Double> uniqueElements = new ArrayList<Double>(uniqueElementMap.keySet());
 		int percentileIndex = (int)Math.floor(0.85 * uniqueElements.size());
 		thresholdValue = uniqueElements.get(percentileIndex);
 		return thresholdValue; 
 	}
 	
-	private static int calculateDistance(NeuronModel mainNeuron, NeuronModel neighbourNeuron)
+	public static double calculateDistance(NeuronModel mainNeuron, NeuronModel neighbourNeuron)
 	{
-		int sum_of_weights = 0;
+		double sum_of_weights = 0;
 		for(int cnt = 0; cnt < mainNeuron.getWeight().length ; cnt++)
 		{
 			sum_of_weights += Math.abs(mainNeuron.getWeight()[cnt] - neighbourNeuron.getWeight()[cnt]);

@@ -73,6 +73,8 @@ public interface TopologyModel {
      */
     public TreeMap getNeighbourhood(int neuronNumber);
     
+    public TreeMap getNeighbours(int neuronNumber);
+    
     /**
      * Return Coord object containing intormation about neuron co-ordinate
      * @param neuronNumber neuron number

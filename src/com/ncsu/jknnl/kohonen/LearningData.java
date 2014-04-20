@@ -42,6 +42,9 @@ import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.ncsu.ubl.master.Controller;
+import com.ncsu.ubl.models.DataFold;
+
 /**
  * Obiect containing learning data. Data are stored as array 
  * with double values.
@@ -70,7 +73,7 @@ public class LearningData implements LearningDataModel{
             System.out.println("Data from: \"" + fileName + "\" are importing...");
             while((line = input.readLine()) != null){
                 rows ++;
-                tempTable = line.split("\t");
+                tempTable = line.split(Controller.getConfig().getDelimiter());
                 int tableLenght = tempTable.length;
                 tempList = new double[tableLenght];
                 for(int i = 0; i< tableLenght; i++){
@@ -82,6 +85,35 @@ public class LearningData implements LearningDataModel{
             System.out.println(rows + " rows was imported");
         }catch(IOException e){
             System.out.println("File can not be read!. Error: " + e);
+        }
+    }
+    
+    /**
+     * Generate LearningData from DataFold vector
+     */
+    public LearningData(DataFold[] trainData)
+    {
+        String[] tempTable;
+        double[] tempList;
+        ArrayList<String> tempStrData = null;
+        
+        if(trainData != null)
+        {
+        	for(DataFold data:trainData)
+        	{
+        		tempStrData = data.getData();
+        		for(String dataStr : tempStrData)
+        		{
+        			tempTable = dataStr.split(Controller.getConfig().getDelimiter());
+        			int tableLength = tempTable.length;
+        			tempList = new double[tableLength];
+        			for(int i=0; i < tableLength ; i++)
+        			{
+        				tempList[i] = Double.valueOf(tempTable[i]);
+        			}
+        			dataList.add(tempList);
+        		}
+        	}
         }
     }
     

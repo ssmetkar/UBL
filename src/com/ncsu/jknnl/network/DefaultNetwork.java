@@ -43,6 +43,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.ncsu.jknnl.topology.MatrixTopology;
 import com.ncsu.jknnl.topology.TopologyModel;
 
 /**
@@ -118,7 +119,44 @@ public class DefaultNetwork implements NetworkModel{
         }
         this.topology = topology;
     }
-        
+       
+    /**
+     * Copy Constructor to clone Default Network instance 
+     */
+    public static DefaultNetwork newInstance(DefaultNetwork network)
+    {
+		DefaultNetwork newInstance = new DefaultNetwork();
+		newInstance.setNeuronList(network.getNeuronList());
+		newInstance.setTopology(new MatrixTopology(network.getTopology()
+				.getRowNumber(), network.getTopology().getColNumber(), network
+				.getTopology().getRadius()));
+		return newInstance;
+    }
+    
+    /**
+     * Default Constructor
+     */
+    public DefaultNetwork()
+    {
+    }
+    
+    public NeuronModel[] getNeuronList()
+    {
+    	return neuronList;
+    }
+    
+    public void setNeuronList(NeuronModel[] neuronList)
+    {
+    	int i = 0;
+    	NeuronModel[] newList = new KohonenNeuron[neuronList.length];
+    	for(NeuronModel model:neuronList)
+    	{
+    		NeuronModel tempModel = new KohonenNeuron(model.getWeight(), null);
+    		newList[i++] = tempModel;
+    	}
+    	this.neuronList = newList;
+    }
+    
     /**
      * 
      * Return specified by number neuron

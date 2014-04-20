@@ -16,6 +16,7 @@ import com.ncsu.ubl.master.Controller;
 
 public class ReadMetricsRESTClient {
 	
+	/*
 	public static ArrayList<double[]> pullData(String ip_address)
 	{
 		ArrayList<double[]> learningData = null;
@@ -55,7 +56,7 @@ public class ReadMetricsRESTClient {
 				}
 				
 				//Code to write to file
-			/*	OutputStream outStream = new FileOutputStream(output_file_name);
+				OutputStream outStream = new FileOutputStream(output_file_name);
 				byte[] buffer = new byte[1024];
 				int bytesRead;
 				
@@ -63,7 +64,7 @@ public class ReadMetricsRESTClient {
 				{
 						outStream.write(buffer);
 				}
-				outStream.close();*/
+				outStream.close();
 			}
 			connection.disconnect();
 			
@@ -75,5 +76,5 @@ public class ReadMetricsRESTClient {
 			e.printStackTrace();
 		}
 		return learningData;
-	}
+	}*/
 }

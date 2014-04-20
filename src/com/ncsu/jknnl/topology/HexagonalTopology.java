@@ -243,4 +243,10 @@ public class HexagonalTopology implements TopologyModel{
         }
         return conn;
     }
+
+	@Override
+	public TreeMap getNeighbours(int neuronNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

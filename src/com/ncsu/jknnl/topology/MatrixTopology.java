@@ -104,30 +104,83 @@ public class MatrixTopology implements TopologyModel {
      * @return list of connected neurons
      * @see ArrayList
      */
-    public ArrayList getConnectedNeurons(int neuronNumber) {
-        ArrayList connectedNeurons = new ArrayList();
-
-        if ((neuronNumber < colNumber * rowNumber) && (neuronNumber > 0)){
-            if (neuronNumber - colNumber > 0) {
-                connectedNeurons.add(neuronNumber - colNumber);
+    public ArrayList<Integer> getConnectedNeurons(int neuronNumber) {
+        ArrayList<Integer> connectedNeurons = new ArrayList<Integer>();
+        int top = -1 ,left = -1,right = -1,bottom = -1;
+        if ((neuronNumber < colNumber * rowNumber) && (neuronNumber >= 0)){
+        	//up
+            if (neuronNumber - colNumber >= 0) {
+                top = neuronNumber - colNumber;
+                connectedNeurons.add(top);
             }
-
-            if ((neuronNumber - 1 > 0) && ((neuronNumber % colNumber) != 1)) {
-                connectedNeurons.add(neuronNumber - 1);
+            //left
+            if ((neuronNumber - 1 >= 0) && ((neuronNumber % colNumber) != 0)) {
+            	left = neuronNumber - 1;
+                connectedNeurons.add(left);
             }
-
-            if ((neuronNumber + 1 <= colNumber * rowNumber)
-                    && ((neuronNumber % colNumber) != 0)) {
-                connectedNeurons.add(neuronNumber + 1);
+            //right
+            if ((neuronNumber + 1 < colNumber * rowNumber)
+                    && (((neuronNumber + 1) % colNumber) != 0)) {
+            	right = neuronNumber + 1;
+                connectedNeurons.add(right);
             }
-
-            if (neuronNumber + colNumber <= colNumber * rowNumber) {
-                connectedNeurons.add(neuronNumber + colNumber);
+            //down
+            if (neuronNumber + colNumber < colNumber * rowNumber) {
+            	bottom = neuronNumber + colNumber;
+                connectedNeurons.add(bottom);
+            }
+            //top-left
+            if(top - 1 >= 0 && ((top % colNumber) != 0))
+            {
+            	connectedNeurons.add(top - 1);
+            }
+            //top-right
+            if( ((top + 1) % colNumber != 0) && ((top + 1) < colNumber * rowNumber))
+            {
+            	connectedNeurons.add(top + 1);
+            }
+            //bottom-left
+            if( bottom - 1 >= 0 && ((bottom % colNumber) != 0))
+            {
+            	connectedNeurons.add(bottom - 1);
+            }
+            //bottom-right
+            if( bottom + 1 < colNumber * rowNumber && ((bottom + 1) % colNumber != 0))
+            {
+            	connectedNeurons.add(bottom + 1);
             }
         }
       return connectedNeurons;   
     }
 
+    public ArrayList<Integer> getAdjacentNeurons(int neuronNumber) {
+        ArrayList<Integer> connectedNeurons = new ArrayList<Integer>();
+        int top = -1 ,left = -1,right = -1,bottom = -1;
+        if ((neuronNumber < colNumber * rowNumber) && (neuronNumber >= 0)){
+        	//up
+            if (neuronNumber - colNumber >= 0) {
+                top = neuronNumber - colNumber;
+                connectedNeurons.add(top);
+            }
+            //left
+            if ((neuronNumber - 1 >= 0) && ((neuronNumber % colNumber) != 0)) {
+            	left = neuronNumber - 1;
+                connectedNeurons.add(left);
+            }
+            //right
+            if ((neuronNumber + 1 < colNumber * rowNumber)
+                    && (((neuronNumber + 1) % colNumber) != 0)) {
+            	right = neuronNumber + 1;
+                connectedNeurons.add(right);
+            }
+            //down
+            if (neuronNumber + colNumber < colNumber * rowNumber) {
+            	bottom = neuronNumber + colNumber;
+                connectedNeurons.add(bottom);
+            }
+        }
+      return connectedNeurons;   
+    }
     /**
      * Return temporary Array List of neurons connected to neurons from input Array Lis
      * @param tempConnection array list of neurons
@@ -141,23 +194,39 @@ public class MatrixTopology implements TopologyModel {
         for (int j = 0; j < tempConnection.size(); j++) {
             tempConn = getConnectedNeurons((java.lang.Integer)tempConnection.get(j));
             for (int i = 0; i < tempConn.size(); i++) {
-                neighborgoodConn.add(tempConn.get(i));
+            	neighborgoodConn.add(tempConn.get(i));
             }
+            
+        }
+        return neighborgoodConn;
+    }
+    
+    private ArrayList getNRestricted(ArrayList tempConnection) {
+        ArrayList neighborgoodConn = new ArrayList();
+        ArrayList tempConn         = new ArrayList();
+
+        for (int j = 0; j < tempConnection.size(); j++) {
+            tempConn = getAdjacentNeurons((java.lang.Integer)tempConnection.get(j));
+            for (int i = 0; i < tempConn.size(); i++) {
+            	neighborgoodConn.add(tempConn.get(i));
+            }
+            
         }
         return neighborgoodConn;
     }
 
     /**
-     * Return TreeMap containng information about neuron and distance to neuron for which neighbourhood is 
+     * Return TreeMap containing information about neuron and distance to neuron for which neighbourhood is 
      * calculated
      * @param neuronNumber neuron number
-     * @return Tree map containn neuron number and distance
+     * @return Tree map contain neuron number and distance
      * @see TreeMap
      */
     
     public TreeMap getNeighbourhood(int neuronNumber) {
         TreeMap<java.lang.Integer, java.lang.Integer> neighbornhood =
             new TreeMap<java.lang.Integer, java.lang.Integer>();
+        
         ArrayList tempConnection   = new ArrayList();
         ArrayList neighborgoodConn = new ArrayList();
 
@@ -168,6 +237,35 @@ public class MatrixTopology implements TopologyModel {
 
         for (int i = 0; i < radius; i++) {
             neighborgoodConn = getN(tempConnection);
+
+            for (int k = 0; k < neighborgoodConn.size(); k++) {
+                key = (java.lang.Integer) neighborgoodConn.get(k);
+
+                if (!neighbornhood.containsKey(key) && (key != neuronNumber)) {
+                    neighbornhood.put(key, i + 1);
+                }
+            }
+
+            tempConnection = (java.util.ArrayList) neighborgoodConn.clone();
+        }
+
+        return neighbornhood;
+    }
+    
+    public TreeMap getNeighbours(int neuronNumber) {
+        TreeMap<java.lang.Integer, java.lang.Integer> neighbornhood =
+            new TreeMap<java.lang.Integer, java.lang.Integer>();
+        
+        ArrayList tempConnection   = new ArrayList();
+        ArrayList neighborgoodConn = new ArrayList();
+
+        tempConnection.add(neuronNumber);
+
+        int[] temp = null;
+        int   key;
+
+        for (int i = 0; i < radius; i++) {
+            neighborgoodConn = getNRestricted(tempConnection);
 
             for (int k = 0; k < neighborgoodConn.size(); k++) {
                 key = (java.lang.Integer) neighborgoodConn.get(k);

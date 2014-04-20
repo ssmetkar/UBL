@@ -48,14 +48,16 @@ package com.ncsu.jknnl.topology;
 public class GaussNeighbourhoodFunction implements NeighbourhoodFunctionModel{
     
     private double r;   // radius
+    private double h;
     
     /**
      * Creates a new instance of GaussNeighbourhoodFunction with
      * specified radius
      * @param radius Radius
      */
-    public GaussNeighbourhoodFunction(int radius) {
+    public GaussNeighbourhoodFunction(int radius,int height) {
         this.r = radius;
+        this.h = height;
     }
     
     /**
@@ -83,6 +85,6 @@ public class GaussNeighbourhoodFunction implements NeighbourhoodFunctionModel{
      * @param distance distance value
      */
     public double getValue(int distance){
-       return java.lang.Math.exp(-(java.lang.Math.pow(distance,2))/ (2 * r * r ));
+       return  h * java.lang.Math.exp(-(java.lang.Math.pow(distance,2))/ (2 * r * r ));
     }   
 }
