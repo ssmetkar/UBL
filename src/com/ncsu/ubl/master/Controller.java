@@ -2,14 +2,10 @@ package com.ncsu.ubl.master;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -52,18 +48,22 @@ public class Controller {
 		try{
 			File file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
 			String metric = ReadFile.readLast_N_Lines(file, 1);
+			String[] lastline = metric.split("\\n");
+			metric = lastline[lastline.length-1];
 			String[] splited = metric.split("\\s+");
-			newRow[Constants.METRIC.MEM.getValue()] = Double.parseDouble(splited[5]);
+			newRow[Constants.METRIC.MEM.getValue()] = Double.parseDouble(splited[4]);
 			
 			file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntuPara.log");
 			metric = ReadFile.readLast_N_Lines(file, 1);
+			lastline = metric.split("\\n");
+			metric = lastline[lastline.length-1];
 			splited = metric.split("\\s+");
-			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[3]);
-			newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[9]);
-			newRow[Constants.METRIC.NETRX.getValue()] = Double.parseDouble(splited[11]);
-			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[13]);
-			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[15]);
-			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[17]);
+			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[2]);
+			newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[8]);
+			newRow[Constants.METRIC.NETRX.getValue()] = Double.parseDouble(splited[10]);
+			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[12]);
+			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[14]);
+			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);
 			
 			/* SCALING LOGIC
 			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
@@ -90,6 +90,8 @@ public class Controller {
 		
 		return normalizedNewRow;
 	}
+	
+	
 	
 	public void initialize()
 	{
@@ -196,14 +198,41 @@ public class Controller {
 					double metricInput[] = new double[100];
 					int scaleTo = -1;
 					File metricSource = null;
+					String metric;
+					String[] line;
+					int i = 0;
 					switch (rankList.getRankList().get(0)) {
 						case 0: // It is Memory, get Memory data into metricInput
-							metricSource = new File(
-								"D:\\NCSU\\Android_Workspace\\FFT_sample\\src\\sineWaveDummyData.txt");
-							break;
+								metricSource = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+								metric = ReadFile.readLast_N_Lines(metricSource, 100);
+								line = metric.split("\\n");
+								i = 0;
+								for(String m : line){
+									if(m.length()<40)
+										continue;
+									String[] parts = m.split("\\s+");		
+									metricInput[i]=Double.parseDouble(parts[4]);
+									System.out.println(metricInput[i]);
+									i++;
+									if(i>99)
+										break;
+								}
+								break;
 						case 1: // It is CPU, get CPU data into metricInput
-								metricSource = new File(
-									"D:\\NCSU\\Android_Workspace\\FFT_sample\\src\\sineWaveDummyData.txt");
+								metricSource = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+								metric = ReadFile.readLast_N_Lines(metricSource, 100);
+								line = metric.split("\\n");
+								i = 0;
+								for(String m : line){
+									if(m.length()<40)
+										continue;
+									String[] parts = m.split("\\s+");		
+									metricInput[i]=Double.parseDouble(parts[2]);
+									System.out.println(metricInput[i]);
+									i++;
+									if(i>99)
+										break;
+								}
 								break;
 						case 2: // NETTX causing issue
 								System.out.println("ALARM: NETTX is going to cause ANOMALY.");
@@ -225,24 +254,8 @@ public class Controller {
 					// If it is not CPU or MEMORY, Exit!
 					if(metricSource == null)
 						return;
-					
-					// point to a file with the last 100 metric data of the
-					// particular metric
-					try {
-						int i = 0;
-						scan = new Scanner(metricSource);
-						while (scan.hasNextDouble()) {
-							metricInput[i] = scan.nextDouble();
-							i++;
-						}
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					} finally {
-						scan.close();
-					}
 
-					scaleTo = SignaturePredictionModel
-							.SignatureDrivenPrediction(metricInput);
+					scaleTo = SignaturePredictionModel.SignatureDrivenPrediction(metricInput);
 					if (scaleTo < 0) {
 						/* MarkovChainModel Testing Code */
 						MarkovChainModel MyModel = new MarkovChainModel(40);
