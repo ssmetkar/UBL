@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 
 public final class ReadFile {
 
-	private static String readLast_N_Lines(File file, int numberOfLines)
+	public static String readLast_N_Lines(File file, int numberOfLines)
 	{
 		RandomAccessFile randomAccessFile=null;
 		StringBuilder result = new StringBuilder();

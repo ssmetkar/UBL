@@ -20,10 +20,12 @@ import com.ncsu.jknnl.topology.MatrixTopology;
 import com.ncsu.jknnl.topology.TopologyModel;
 import com.ncsu.press.MarkovChainModel;
 import com.ncsu.press.SignaturePredictionModel;
+import com.ncsu.ubl.commons.Constants;
 import com.ncsu.ubl.configuration.VMConfiguration;
 import com.ncsu.ubl.models.RankList;
 import com.ncsu.ubl.models.SOMModel;
 import com.ncsu.ubl.utility.TopologyModelFactory;
+import com.ncsu.ubl.utility.ReadFile;
 
 /**
  * This is the main controller class which initiates the learning model 
@@ -35,13 +37,93 @@ public class Controller {
 	
 	private int alarmCount;
 	private static VMConfiguration config; 
+	private static double[][] MinMaxMetricVal;
 	//private Map<String,NetworkModel> VM_model_map;
 	private SOMModel somModel;
+	
+	public double[] readNormalizedLastLine()
+	{
+		double[] newRow = new double[7];
+		double[] normalizedNewRow = new double[7];
+		
+		try{
+			File file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+			String metric = ReadFile.readLast_N_Lines(file, 1);
+			String[] splited = metric.split("\\s+");
+			newRow[Constants.METRIC.MEM.getValue()] = Double.parseDouble(splited[5]);
+			
+			file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntuPara.log");
+			metric = ReadFile.readLast_N_Lines(file, 1);
+			splited = metric.split("\\s+");
+			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[3]);
+			newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[9]);
+			newRow[Constants.METRIC.NETRX.getValue()] = Double.parseDouble(splited[11]);
+			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[13]);
+			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[15]);
+			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[17]);
+			
+			/* SCALING LOGIC
+			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
+			 * X_scaled = X_std * (max - min) + min 
+			 */
+//			System.out.println("The normalized data is:");
+			for(int i=0;i<7;i++)
+			{
+				double std;
+				double denominator = MinMaxMetricVal[1][i] - MinMaxMetricVal[0][i];
+				if(denominator > 0)
+					std = (newRow[i] - MinMaxMetricVal[0][i]) / denominator;
+				else
+					std=0;
+				
+				normalizedNewRow[i] = std * (100 - 0) + 0;
+//				System.out.print(normalizedNewRow[i] + "  ");
+			}
+		} catch(NullPointerException e){
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return normalizedNewRow;
+	}
 	
 	public void initialize()
 	{
 		config = VMConfiguration.getInstance();
 		alarmCount=0;
+		
+		//Call the TrainDataPreprocess python file to get the normalized Training data
+		MinMaxMetricVal = new double[2][7];
+		ProcessBuilder p = new ProcessBuilder("python","C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\TrainDataPreprocess.py");
+		Process proc;
+		try {
+			proc = p.start();
+			
+			BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+			
+			String ligne = "";
+			int counter = 0;
+			
+			while ((ligne = output.readLine()) != null) {
+				if(counter>13)
+					break;
+			    Double d = Double.parseDouble(ligne);
+			    MinMaxMetricVal[(int)(counter/7)][(int)(counter%7)] = d;
+			    counter++;
+			}		
+//			TESTING THE PYTHON'S OUTPUT
+//			while ((ligne = error.readLine()) != null) {
+//			 System.out.println(ligne);
+//			}
+//			System.out.println(output);		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		/*for(int i = 1; i <= config.getNumberOfVM(); i++)
 		{
 			TopologyModel topologyModel = TopologyModelFactory

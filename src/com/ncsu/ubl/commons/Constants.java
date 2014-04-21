@@ -32,4 +32,30 @@ public interface Constants {
 	public static final int ABNORMAL = 1;
 	public static final int NORMAL = 0;
 	public static final String PREDICT_DATA_FILE = "predict_data_file";
+	
+	public static enum METRIC {
+		MEM(0),
+		CPU(1),
+        NETTX(2),
+        NETRX(3),
+        VBD_OO(4),
+        VBD_RD(5),
+        VBD_WR(6);
+        
+        private int value;
+
+        private METRIC(int value) {
+                this.setValue(value);
+        }
+
+		public int getValue() {
+			return value;
+		}
+
+		public void setValue(int value) {
+			this.value = value;
+		}
+	};
+
+
 }
