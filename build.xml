@@ -42,15 +42,22 @@
 				<include name="ubl.properties" />
 				<include name="TrainDataPreprocess.py" />
 			</fileset>
-		</copy>	
+		</copy>
+		<copy todir="${build.dir}">
+			<fileset dir="resources">
+				<include name="log4j.properties" />
+			</fileset>
+		</copy>
 	</target>
 	
 	<target name="build-jar" depends="build">
 		<delete file="${final.jar}" />
+		<manifestclasspath property="jar.classpath" jarfile="${build.dir}/ubl.jar">
+			<classpath refid="build.classpath" />	
+		</manifestclasspath>	
 		<jar destfile="${build.dir}/ubl.jar" basedir="${build.dir}" >
 			<manifest>
 				<attribute name="Main-Class" value="com.ncsu.ubl.master.Controller" />
-				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${lib.dir}" includes="**/*.jar" />
 		</jar>
