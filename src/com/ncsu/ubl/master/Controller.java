@@ -183,87 +183,83 @@ public class Controller {
 		}*/
 	}
 	
-	public void launch()
-	{
-		FileReader input;
-		String tempTable[] = null;
-		double[] tempList = null;
-		BufferedReader br = null;
+	public void launch() {
 		try {
-			input = new FileReader(config.getPredictDataFile());
-			br = new BufferedReader(input);
-			String line = "";
-			while( (line = br.readLine()) != null )
-			{
-				tempTable = line.split(Controller.getConfig().getDelimiter());
-				int tableLength = tempTable.length;
-				tempList = new double[tableLength];
-				for(int i=0; i < tableLength ; i++)
-				{
-					tempList[i] = Double.valueOf(tempTable[i]);
-				}
-				RankList rankList = somModel.predictState(tempList);
+			RankList rankList = somModel.predictState(readNormalizedLastLine());
 
-				if(rankList.getState() == 0)
-				{
-					alarmCount = 0;
-				}
-				else if(rankList.getState() == 1)
-				{
-					if(++alarmCount >=2 )
-					{
-						alarmCount++;
-						Scanner scan = null;
-						double metricInput [] = new double [100];
-						int scaleTo = -1;
-
-						switch (rankList.getRankList().get(0))
-						{
-						case 0: //It is CPU, get CPU data into metricInput
+			if (rankList.getState() == 0) {
+				alarmCount = 0;
+			} else if (rankList.getState() == 1) {
+				if (++alarmCount >= 2) {
+					alarmCount++;
+					Scanner scan = null;
+					double metricInput[] = new double[100];
+					int scaleTo = -1;
+					File metricSource = null;
+					switch (rankList.getRankList().get(0)) {
+						case 0: // It is Memory, get Memory data into metricInput
+							metricSource = new File(
+								"D:\\NCSU\\Android_Workspace\\FFT_sample\\src\\sineWaveDummyData.txt");
 							break;
-						case 1: //It is Memory, get Memory data into metricInput
-							break;
-						case 2: //It is Something else, Print appropriate data
-							System.out.println("ALARM: THIS METRIC is going to cause ANOMALY.");
-							break;
-						}
-
-						//point to a file with the last 100 metric data of the particular metric
-						File metricSource = new File("D:\\NCSU\\Android_Workspace\\FFT_sample\\src\\sineWaveDummyData.txt");
-						try {
-							int i = 0;
-							scan = new Scanner(metricSource);
-							while(scan.hasNextDouble())
-							{
-								metricInput[i]=scan.nextDouble();
-								i++;
-							}
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
-						} finally{
-							scan.close();
-						}
-
-						scaleTo = SignaturePredictionModel.SignatureDrivenPrediction(metricInput);
-						if (scaleTo == -1)
-						{
-							/*MarkovChainModel Testing Code*/
-							MarkovChainModel MyModel = new MarkovChainModel(40);
-							MyModel.trainMarkovChainModel(metricInput);
-							//						MyModel.printTransition_matrix();
-							scaleTo = MyModel.predictState((int)metricInput[metricInput.length-1], 10);
-						}
-
-						//code for actually scaling the metric
+						case 1: // It is CPU, get CPU data into metricInput
+								metricSource = new File(
+									"D:\\NCSU\\Android_Workspace\\FFT_sample\\src\\sineWaveDummyData.txt");
+								break;
+						case 2: // NETTX causing issue
+								System.out.println("ALARM: NETTX is going to cause ANOMALY.");
+								break;
+						case 3: // NETRX causing issue
+								System.out.println("ALARM: NETRX is going to cause ANOMALY.");
+								break;
+						case 4: // VBD_OO causing issue
+								System.out.println("ALARM: VBD_OO is going to cause ANOMALY.");
+								break;
+						case 5: // VBD_RD causing issue
+								System.out.println("ALARM: VBD_RD is going to cause ANOMALY.");
+								break;
+						case 6: // VBD_WR causing issue
+								System.out.println("ALARM: VBD_WR is going to cause ANOMALY.");
+								break;
 					}
+					
+					// If it is not CPU or MEMORY, Exit!
+					if(metricSource == null)
+						return;
+					
+					// point to a file with the last 100 metric data of the
+					// particular metric
+					try {
+						int i = 0;
+						scan = new Scanner(metricSource);
+						while (scan.hasNextDouble()) {
+							metricInput[i] = scan.nextDouble();
+							i++;
+						}
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} finally {
+						scan.close();
+					}
+
+					scaleTo = SignaturePredictionModel
+							.SignatureDrivenPrediction(metricInput);
+					if (scaleTo < 0) {
+						/* MarkovChainModel Testing Code */
+						MarkovChainModel MyModel = new MarkovChainModel(40);
+						MyModel.trainMarkovChainModel(metricInput);
+						// MyModel.printTransition_matrix();
+						scaleTo = MyModel.predictState(
+								(int) metricInput[metricInput.length - 1],
+								Controller.getConfig().getPredictAheadStep());
+					}
+
+					// code for actually scaling the metric
+					// code for adding 5% padding also
+					//CODE for Live VM Migration
 				}
 			}
-			input.close();
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Wrong input file");
-		} catch (IOException e) {
-			System.err.println("IO exception");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

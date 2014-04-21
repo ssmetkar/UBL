@@ -33,6 +33,7 @@ public interface Constants {
 	public static final int NORMAL = 0;
 	public static final String PREDICT_DATA_FILE = "predict_data_file";
 	public static final String LOOK_AHEAD_SIZE = "look_ahead_size";
+	public static final String PREDICT_AHEAD_STEP = "predict_ahead_step";
 	
 	public static enum METRIC {
 		MEM(0),

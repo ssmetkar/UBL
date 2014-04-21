@@ -5,11 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
-import org.omg.PortableInterceptor.INACTIVE;
 
 import com.ncsu.ubl.commons.*;
 
@@ -38,7 +35,10 @@ public class VMConfiguration {
 	private int normalNeurons;
 	private String predictDataFile;
 	private int lookAheadSize;
+	private int predictAheadStep;
 			
+	
+
 	private static void loadConfig()
 	{
 		VMConfiguration.config = new VMConfiguration();
@@ -67,6 +67,7 @@ public class VMConfiguration {
 			config.normalNeurons = Integer.parseInt(props.getProperty(Constants.NORMAL_NEURONS));
 			config.predictDataFile = props.getProperty(Constants.PREDICT_DATA_FILE);
 			config.lookAheadSize = Integer.parseInt(props.getProperty(Constants.LOOK_AHEAD_SIZE));
+			config.predictAheadStep = Integer.parseInt(props.getProperty(Constants.PREDICT_AHEAD_STEP)); 
 			
 		} catch (FileNotFoundException e) {
 			System.err.println("Error while opening configuration file.");
@@ -181,6 +182,10 @@ public class VMConfiguration {
 	public int getLookAheadSize()
 	{
 		return lookAheadSize;
+	}
+	
+	public int getPredictAheadStep() {
+		return predictAheadStep;
 	}
 	
 }

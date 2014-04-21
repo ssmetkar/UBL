@@ -11,6 +11,9 @@ import net.sf.javaml.distance.fastdtw.dtw.WarpPath;
 import net.sf.javaml.distance.fastdtw.timeseries.TimeSeries;
 
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+
+import com.ncsu.ubl.master.Controller;
+
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_1D;
 
 public class SignaturePredictionModel {
@@ -41,18 +44,7 @@ public class SignaturePredictionModel {
 			else
 				fftoutput[i] = -1;
 		}
-		 
-//		 try
-//			{
-//				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), new String[0]);
-//				PythonInterpreter interp = new PythonInterpreter();
-//				interp.execfile("foo.py");
-//			}
-//			catch (Exception e)
-//			{
-//				e.printStackTrace();
-//			}
-
+	
 		//Compute DFT on the metric data
 		DoubleFFT_1D fft = new DoubleFFT_1D(WINDOWSIZE);
 		fft.realForwardFull(fftoutput);
@@ -173,9 +165,10 @@ public class SignaturePredictionModel {
 				shiftedSignature[((i+shiftedDist)%patternWindowSize)] = Signature[i];
 			}
 			
+			//RETURN THE PREDICTION OF NUMBER OF STEPS AHEAD FROM SIGNATURE
+			//ALTERNATIVE: you can return the max of the signature values
+			return (int)Math.ceil(shiftedSignature[(Controller.getConfig().getPredictAheadStep())%patternWindowSize]);
 		}
-		
-		return 0;
 	}
 
 }
