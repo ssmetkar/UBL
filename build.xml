@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="UBL">
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="build.dir" value="build" />
+	<property name="main.class" value="com.ncsu.ubl.master.Controller" />
+	<property name="final.jar"  value="${build.dir}/ubl.jar" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="resources.dir" value="${build.dir}/resources" />
+
+
+	<path id = "build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name = "**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${resources.dir}" />
+	</target>
+	
+	<!--target name = "compile" depends = "clean,makedir">
+		<javac srcdir ="${src.dir}" destdir = "${build.dir}" classpathref="build.classpath" />
+	</target-->
+	
+	<target name="build" depends = "clean,makedir,copy.properties">
+		<javac debug="true" destdir="${build.dir}">
+			<src path="${src.dir}" />
+			<classpath refid="build.classpath"/>
+		</javac>
+	</target>
+	
+	<target name="copy.properties">
+		<copy todir="${resources.dir}">
+			<fileset dir="resources">
+				<include name="ubl.properties" />
+				<include name="TrainDataPreprocess.py" />
+			</fileset>
+		</copy>	
+	</target>
+	
+	<target name="build-jar" depends="build">
+		<delete file="${final.jar}" />
+		<jar destfile="${build.dir}/ubl.jar" basedir="${build.dir}" >
+			<manifest>
+				<attribute name="Main-Class" value="com.ncsu.ubl.master.Controller" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${lib.dir}" includes="**/*.jar" />
+		</jar>
+		
+	</target>
+</project>
