@@ -1,8 +1,15 @@
 package com.ncsu.press;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.distance.dtw.DTWSimilarity;
+import net.sf.javaml.distance.fastdtw.dtw.DTW;
+import net.sf.javaml.distance.fastdtw.dtw.TimeWarpInfo;
+import net.sf.javaml.distance.fastdtw.dtw.WarpPath;
+import net.sf.javaml.distance.fastdtw.timeseries.TimeSeries;
+
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_1D;
 
@@ -75,16 +82,17 @@ public class SignaturePredictionModel {
 //		int patternWindowSize = 20;
 		int patternWindowSize = (int) Math.ceil(SAMPLERATE/dominatingFreq);
 		System.out.println("PatternWindowSize = "+patternWindowSize);
-		double[][] windows = new double[(int) Math.ceil(metricInput.length/patternWindowSize)][patternWindowSize];
+		double[][] windows = new double[(int) Math.floor(metricInput.length/patternWindowSize)][patternWindowSize];
 		int window_count=0;
 		
 		for(i = 0; i<metricInput.length;i+=patternWindowSize)
 		{
 			if((i+patternWindowSize-1) >= (metricInput.length-1))
 			{
-				int temp = 0;
-				for(int j=i;j<metricInput.length;j++)
-					windows[window_count][temp++] = metricInput[j];
+//				int temp = 0;
+//				for(int j=i;j<metricInput.length;j++)
+//					windows[window_count][temp++] = metricInput[j];
+				break;
 			}
 			else
 			{
@@ -105,11 +113,11 @@ public class SignaturePredictionModel {
 		 * 5. If both the above conditions are satisfied, then these 2 are similar windows
 		 */
 		boolean isRepeatingPattern = true;
-		boolean[][] SimilarWindows = new boolean[windows.length][windows.length];
+		boolean[][] SimilarWindows = new boolean[windows.length][patternWindowSize];
 		
 		for(i=0;i<windows.length;i++)
 		{
-			for(int j=i;j<windows.length;j++)
+			for(int j=0;j<patternWindowSize;j++)
 			{
 				PearsonsCorrelation correlationValues = new PearsonsCorrelation();
 				double correlationResultValue = 0;
@@ -129,9 +137,14 @@ public class SignaturePredictionModel {
 				else
 					MeanRatio = false;
 				
-				SimilarWindows[i][j] = SimilarWindows[j][i] = correlationResult && MeanRatio;
+//				SimilarWindows[i][j] = SimilarWindows[j][i] = correlationResult && MeanRatio;
+				SimilarWindows[i][j] = correlationResult && MeanRatio;
 				isRepeatingPattern = isRepeatingPattern && SimilarWindows[i][j];
+				if(isRepeatingPattern == false)
+					break;
 			}
+			if(isRepeatingPattern == false)
+				break;
 		}
 		
 		System.out.println("Signature-Based Result "+isRepeatingPattern);
@@ -141,16 +154,25 @@ public class SignaturePredictionModel {
 		else
 		{
 			//Calculate the Signature from the average of that position from each window
-			double[] Signature = new double[windows.length];
+			double[] Signature = new double[patternWindowSize];
 			for(i=0;i<windows.length;i++)
-				for(int j=0;j<windows[i].length;j++)
+				for(int j=0;j<patternWindowSize;j++)
 					Signature[j] += (windows[i][j]/windows.length);
 			
-			//Code to find the Dynamic Time Wrapping distance between 2 time series
-			DenseInstance window1 = new DenseInstance(windows[0]);
-			DenseInstance window2 = new DenseInstance(windows[1]);
-			DTWSimilarity similarity = new DTWSimilarity();
-			System.out.println(similarity.measure(window1, window2));
+			//Code to find the Dynamic Time Wrapping distance between last window and signature
+			double[] lastWindowVal = Arrays.copyOfRange(metricInput, metricInput.length-(patternWindowSize+1), metricInput.length-1);
+			TimeSeries lastWindow = new TimeSeries(new DenseInstance(lastWindowVal));
+			TimeSeries SignatureWindow = new TimeSeries(new DenseInstance(Signature));
+			double dtwDist = DTW.getWarpDistBetween(lastWindow, SignatureWindow);
+			int shiftedDist = (int) Math.round(dtwDist);
+//			TimeWarpInfo timewarpinfo = DTW.getWarpInfoBetween(lastWindow, SignatureWindow);
+//			WarpPath warppath = DTW.getWarpPathBetween(lastWindow,SignatureWindow);
+			double[] shiftedSignature = new double[patternWindowSize];
+			for(i = 0; i < Signature.length;i++ )
+			{
+				shiftedSignature[((i+shiftedDist)%patternWindowSize)] = Signature[i];
+			}
+			
 		}
 		
 		return 0;
