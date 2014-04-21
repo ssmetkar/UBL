@@ -15,20 +15,11 @@ import com.ncsu.ubl.commons.*;
 
 public class VMConfiguration {
 	
-	private static final String CONF_FILE = "ubl.properties";
+	private static final String CONF_FILE = "./resources/ubl.properties";
 	private static VMConfiguration config;
 	
-	//private int number_of_VM;
-	//private String ip_address;
 	private String topologyModelType;
 	private int weightNumber; 
-	
-	//private long timeNextIteration;
-	//private String webServicePath;
-	//private String webServicePort;
-	//private String outputFileName;
-	//private String outputFilePath;
-	//private String learnFileLocation;
 	private String learnFileName;
 	private int rows;
 	private int cols;
@@ -46,26 +37,17 @@ public class VMConfiguration {
 	private String normalizedFileName;
 	private int normalNeurons;
 	private String predictDataFile;
+	private int lookAheadSize;
 			
 	private static void loadConfig()
 	{
 		VMConfiguration.config = new VMConfiguration();
 		InputStream conf_file;
-		//String ip_address;
-		StringTokenizer strToken;
 		try {
 			conf_file = new FileInputStream(new File(CONF_FILE));
 			Properties props = new Properties();
 			props.load(conf_file);
-	//		config.number_of_VM = Integer.parseInt(props.getProperty(Constants.NUMBER_OF_VM));
-		//	ip_address = props.getProperty(Constants.IP_ADDRESS);
 			config.weightNumber = Integer.parseInt(props.getProperty(Constants.WEIGHT_NUMBER));
-		//	config.timeNextIteration = Long.parseLong(props.getProperty(Constants.NEXT_ITERATION_TIME));
-		//	config.webServicePath = props.getProperty(Constants.WEB_SERVICE_PATH);
-		//	config.webServicePort = props.getProperty(Constants.WEB_SERVICE_PORT);
-		//	config.outputFileName = props.getProperty(Constants.OUTPUT_FILENAME);
-		//	config.outputFilePath = props.getProperty(Constants.OUTPUT_FILEPATH);
-		//	config.learnFileLocation = props.getProperty(Constants.LEARN_FILE_LOCATION);
 			config.learnFileName = props.getProperty(Constants.LEARN_FILE_NAME);
 			config.topologyModelType = props.getProperty(Constants.TOPOLOGY_MODEL);
 			config.rows = Integer.parseInt(props.getProperty(Constants.ROWS));
@@ -84,15 +66,8 @@ public class VMConfiguration {
 			config.normalizedFileName = props.getProperty(Constants.NORMALIZED_FILE);
 			config.normalNeurons = Integer.parseInt(props.getProperty(Constants.NORMAL_NEURONS));
 			config.predictDataFile = props.getProperty(Constants.PREDICT_DATA_FILE);
+			config.lookAheadSize = Integer.parseInt(props.getProperty(Constants.LOOK_AHEAD_SIZE));
 			
-			/*strToken = new StringTokenizer(ip_address,",");
-			if(strToken !=null)
-			{
-				while(strToken.hasMoreTokens())
-				{
-					config.ip_address_list.add(strToken.nextToken());
-				}
-			}*/
 		} catch (FileNotFoundException e) {
 			System.err.println("Error while opening configuration file.");
 		} catch (IOException e) {
@@ -108,16 +83,6 @@ public class VMConfiguration {
 		return VMConfiguration.config;
 	}
 	
-	/*public int getNumberOfVM()
-	{
-		return config.number_of_VM; 
-	}
-	
-	public String getIPAddress()
-	{
-		return config.ip_address;
-	}*/
-	
 	public String getTopologyModelType()
 	{
 		return config.topologyModelType;
@@ -127,36 +92,6 @@ public class VMConfiguration {
 	{
 		return config.weightNumber;
 	}
-	
-	/*public long getTimeNextIteration()
-	{
-		return timeNextIteration;
-	}
-	
-	public String getWebServicePath()
-	{
-		return webServicePath;
-	}
-	
-	public String getWebServicePort()
-	{
-		return webServicePort;
-	}
-	
-	public String getOutputFileName()
-	{
-		return outputFileName;
-	} 
-	
-	public String getOutputFilePath()
-	{
-		return outputFilePath;
-	}
-	
-	public String getLearnFileLocation()
-	{
-		return learnFileLocation;
-	}*/
 	
 	public String getLearnFileName()
 	{
@@ -242,6 +177,12 @@ public class VMConfiguration {
 	{
 		return predictDataFile;
 	}
+	
+	public int getLookAheadSize()
+	{
+		return lookAheadSize;
+	}
+	
 }
 
 

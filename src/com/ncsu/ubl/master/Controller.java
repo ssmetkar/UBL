@@ -7,10 +7,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import com.ncsu.jknnl.metrics.MetricModel;
 import com.ncsu.jknnl.network.DefaultNetwork;
@@ -35,6 +37,7 @@ import com.ncsu.ubl.utility.ReadFile;
 
 public class Controller {
 	
+	private static Logger logger = Logger.getLogger("Controller");
 	private int alarmCount;
 	private static VMConfiguration config; 
 	private static double[][] MinMaxMetricVal;
@@ -264,6 +267,109 @@ public class Controller {
 		}
 	}
 	
+	public void test()
+	{
+		FileReader input;
+		int cnt = 0,temp = 0;
+		String tempTable[] = null;
+		double[] tempList = null;
+		BufferedReader br = null;
+		Map<Integer,Integer> actual = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> out = new HashMap<Integer, Integer>();
+		double true_positive = 0, false_positive = 0, accuracy = 0;
+		try
+		{
+			input = new FileReader(config.getPredictDataFile());
+			br = new BufferedReader(input);
+			String line = "";
+			cnt = 0;			
+			//Put the expected result as a map of Timestamp, output
+			while( (line = br.readLine()) != null)
+			{
+				tempTable = line.split(Controller.getConfig().getDelimiter());
+				int tableLength = tempTable.length;
+				tempList = new double[tableLength];
+				out.put(cnt, Character.getNumericValue((tempTable[tableLength-1].charAt(0))));
+				cnt++;
+			}
+			input.close();
+			br.close();
+			
+			input = new FileReader(config.getPredictDataFile());
+			br = new BufferedReader(input);
+			line = "";
+			
+			cnt = 0;
+			//Out the actual result as a map of Timestamp, output 
+			while( (line = br.readLine()) != null )
+			{
+				tempTable = line.split(Controller.getConfig().getDelimiter());
+				int tableLength = tempTable.length;
+				temp = 0;
+				tempList = new double[tableLength-2];
+				for(int i=1; i < tableLength-1 ; i++)
+				{
+					tempList[temp++] = Double.valueOf(tempTable[i]);
+				}
+				RankList rankList = somModel.predictState(tempList);
+				actual.put(cnt, 0);
+				if(rankList.getState() == 1)
+				{
+					for(int start = cnt + 1; (start < out.size()) && (start < cnt + Controller.getConfig().getLookAheadSize()) ; start++)
+					{
+						if(out.get(start) == 2)
+						{
+							actual.put(cnt, 2);
+							/*Iterator<Integer> it = rankList.getRankList().iterator();
+							System.out.println("");
+							while(it.hasNext())
+							{
+								System.out.println(it.next());
+							}*/
+							break;
+						}
+					}
+				}
+				cnt++; 
+			}
+			input.close();
+			br.close();
+			
+			double tp = 0, tn = 0, fp = 0, fn = 0;
+			
+			for(int i = 0; i < actual.size() ; i++)
+			{
+				if(actual.get(i)== 0 && out.get(i) == 0)
+				{
+					tn++;
+				}
+				else if(out.get(i) == 0 && actual.get(i) == 2)
+				{
+					fp++;
+				}
+				else if(out.get(i) == 2 && actual.get(i) == 0 )
+				{
+					fn++;
+				}
+				else if(out.get(i) == 2 && actual.get(i) == 2)
+				{
+					tp++;
+				}
+			}
+			
+			true_positive = tp / (tp + fn);
+			false_positive = fp / (fp + tn);
+			accuracy = (tp + tn) / (tp + tn + fp + fn);
+			System.out.println("True positive : " + true_positive);
+			System.out.println("Accuracy : " + accuracy);
+			System.out.println("False positive :" + false_positive);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static VMConfiguration getConfig()
 	{
 		return config;
@@ -279,7 +385,10 @@ public class Controller {
 		long end = System.currentTimeMillis();
 		System.out.println("Time difference :" + (end - start));
 		System.out.println("Training Complete");
-			
+		
+		//Finding TP, FP, Accuracy
+		//controller.test();	
+		
 		while(true)
 		{
 			start = System.currentTimeMillis();
@@ -297,6 +406,4 @@ public class Controller {
 			}
 		}
 	}
-
-	
 }
