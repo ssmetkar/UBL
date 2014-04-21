@@ -1,14 +1,13 @@
+package com.ncsu.press;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import edu.emory.mathcs.jtransforms.dst.DoubleDST_1D;
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_1D;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.distance.dtw.DTWSimilarity;
-import org.python.util.PythonInterpreter;
 
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
@@ -25,6 +24,7 @@ public class FFTTrial {
 	public static int SignatureDrivenPrediction(File sourcefile)
 	{
 		int WINDOWSIZE = 100;
+		int SAMPLERATE = 1;
 		Double cpuinput [] = new Double [WINDOWSIZE];
 		double[] fftoutput = new double [WINDOWSIZE*2];
 		Double re,im;
@@ -49,6 +49,12 @@ public class FFTTrial {
 			 scan.close();
 		}
 		 
+		//Initialize the extra slots in fftoutput to -1
+		for (;i<WINDOWSIZE*2;i++)
+		{
+		    	fftoutput[i] = -1;
+		}
+		 
 //		 try
 //			{
 //				PythonInterpreter.initialize(System.getProperties(), System.getProperties(), new String[0]);
@@ -61,11 +67,7 @@ public class FFTTrial {
 //			}
 
 		 
-		//Initialize the extra slots in fftoutput to -1
-		for (;i<WINDOWSIZE*2;i++)
-		{
-		    	fftoutput[i] = -1;
-		}
+		
 		
 		//Compute DFT on the metric data
 		DoubleFFT_1D fft = new DoubleFFT_1D(WINDOWSIZE);
@@ -79,10 +81,26 @@ public class FFTTrial {
 			magnitude.add((double) Math.sqrt(re*re+im*im));
 		}
 		
+		Double maxVal = magnitude.get(1);
+		double dominatingFreqIndex = 1;
+		for(i=2;i<magnitude.size()/2 - 1;i++)
+		{
+			if (magnitude.get(i) >= maxVal)
+			{
+				maxVal = magnitude.get(i);
+				dominatingFreqIndex =  i;
+			}
+		}
+		double dominatingFreq = dominatingFreqIndex / (double)WINDOWSIZE;
+		System.out.println("########### MaxVal = "+maxVal+"Fd Index = "+dominatingFreqIndex+"Fd = "+dominatingFreq+" ###############");
+
+		
 		
 		
 		//Set the Pattern Window Size and divide original timeseries into multiple Pattern Windows
-		int patternWindowSize = 20;
+//		int patternWindowSize = 20;
+		int patternWindowSize = (int) Math.ceil(SAMPLERATE/dominatingFreq);
+		System.out.println("PatternWindowSize = "+patternWindowSize);
 		double[][] windows = new double[(int) Math.ceil(cpuinput.length/patternWindowSize)][patternWindowSize];
 		int window_count=0;
 		
@@ -146,14 +164,20 @@ public class FFTTrial {
 		//If the windows are not similar, exit saying not repeatable patterns
 		if (!isRepeatingPattern)
 			return -1;
-		
-		//Code to find the Dynamic Time Wrapping distance between 2 time series
-		DenseInstance window1 = new DenseInstance(windows[0]);
-		DenseInstance window2 = new DenseInstance(windows[1]);
-		DTWSimilarity similarity = new DTWSimilarity();
-		System.out.println(similarity.measure(window1, window2));
-		
-		
+		else
+		{
+			//Calculate the Signature from the average of that position from each window
+			double[] Signature = new double[windows.length];
+			for(i=0;i<windows.length;i++)
+				for(int j=0;j<windows[i].length;j++)
+					Signature[j] += (windows[i][j]/windows.length);
+			
+			//Code to find the Dynamic Time Wrapping distance between 2 time series
+			DenseInstance window1 = new DenseInstance(windows[0]);
+			DenseInstance window2 = new DenseInstance(windows[1]);
+			DTWSimilarity similarity = new DTWSimilarity();
+			System.out.println(similarity.measure(window1, window2));
+		}
 		
 		return 0;
 	}
