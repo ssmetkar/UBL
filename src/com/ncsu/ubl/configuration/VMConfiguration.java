@@ -47,6 +47,7 @@ public class VMConfiguration {
 	private String train_mem_log_file;
 	private String train_metric_log_file;
 	private int dotest;
+	private String vm_name;
 
 	private static void loadConfig()
 	{
@@ -84,6 +85,7 @@ public class VMConfiguration {
 			config.train_mem_log_file  = props.getProperty(Constants.TRAIN_MEM_LOG_FILE);
 			config.train_metric_log_file = props.getProperty(Constants.TRAIN_METRIC_LOG_FILE);
 			config.dotest = Integer.parseInt(props.getProperty(Constants.DO_TEST));
+			config.vm_name = props.getProperty(Constants.VM_NAME);
 			
 		} catch (FileNotFoundException e) {
 			logger.error("Error while opening configuration file");

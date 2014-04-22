@@ -3,18 +3,16 @@ package com.ncsu.ubl.master;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.ncsu.jknnl.metrics.MetricModel;
+import org.apache.log4j.Logger;
+
 import com.ncsu.jknnl.network.DefaultNetwork;
 import com.ncsu.jknnl.network.NetworkModel;
-import com.ncsu.jknnl.network.NeuronModel;
-import com.ncsu.jknnl.topology.MatrixTopology;
 import com.ncsu.jknnl.topology.TopologyModel;
 import com.ncsu.press.MarkovChainModel;
 import com.ncsu.press.SignaturePredictionModel;
@@ -22,10 +20,8 @@ import com.ncsu.ubl.commons.Constants;
 import com.ncsu.ubl.configuration.VMConfiguration;
 import com.ncsu.ubl.models.RankList;
 import com.ncsu.ubl.models.SOMModel;
-import com.ncsu.ubl.utility.TopologyModelFactory;
 import com.ncsu.ubl.utility.ReadFile;
-
-import org.apache.log4j.Logger;
+import com.ncsu.ubl.utility.TopologyModelFactory;
 
 /**
  * This is the main controller class which initiates the learning model 
@@ -44,8 +40,8 @@ public class Controller {
 	
 	public double[] readNormalizedLastLine()
 	{
-		double[] newRow = new double[7];
-		double[] normalizedNewRow = new double[7];
+		double[] newRow = new double[2];
+		double[] normalizedNewRow = new double[2];
 		
 		try{
 			File file = new File(Controller.getConfig().getTrainMemLogFile());
@@ -60,19 +56,20 @@ public class Controller {
 			lastline = metric.split("\\n");
 			metric = lastline[lastline.length-1];
 			splited = metric.split("\\s+");
-			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[2]);
-			newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[8]);
+			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[4]);
+			/*newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[8]);
 			newRow[Constants.METRIC.NETRX.getValue()] = Double.parseDouble(splited[10]);
 			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[12]);
 			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[14]);
-			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);
-			logger.info("Metric read : " + newRow[0] + " " + newRow[1] + " " + newRow[2] + " " + newRow[3] + " " + newRow[4] + " " + newRow[5] + " "
-										+  newRow[6] );
+			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);*/
+			/*logger.info("Metric read : " + newRow[0] + " " + newRow[1] + " " + newRow[2] + " " + newRow[3] + " " + newRow[4] + " " + newRow[5] + " "
+										+  newRow[6] );*/
+			logger.info("Metric read : " + newRow[0] + " " + newRow[1]);
 			/* SCALING LOGIC
 			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
 			 * X_scaled = X_std * (max - min) + min 
 			 */
-			for(int i=0;i<7;i++)
+			for(int i=0;i<2;i++)
 			{
 				double std;
 				double denominator = MinMaxMetricVal[1][i] - MinMaxMetricVal[0][i];
@@ -83,8 +80,7 @@ public class Controller {
 				
 				normalizedNewRow[i] = std * (100 - 0) + 0;
 			}
-			logger.info("Normalized : " + normalizedNewRow[0] + " " + normalizedNewRow[1] + " " + normalizedNewRow[2] + " " + normalizedNewRow[3] + " " + normalizedNewRow[4] + " " + normalizedNewRow[5] + " "
-										+  normalizedNewRow[6] );
+			logger.info("Normalized : " + normalizedNewRow[0] + " " + normalizedNewRow[1] );
 		} catch(NullPointerException e){
 			logger.info(e.getMessage());
 			e.printStackTrace();
@@ -104,7 +100,7 @@ public class Controller {
 		if(Controller.getConfig().doTest() != 1)
 		{
 			//Call the TrainDataPreprocess python file to get the normalized Training data
-			MinMaxMetricVal = new double[2][7];
+			MinMaxMetricVal = new double[2][2];
 			ProcessBuilder p = new ProcessBuilder("python","./resources/TrainDataPreprocess.py");
 			Process proc;
 			try {
@@ -120,7 +116,7 @@ public class Controller {
 					if(counter>13)
 						break;
 				    Double d = Double.parseDouble(ligne);
-				    MinMaxMetricVal[(int)(counter/7)][(int)(counter%7)] = d;
+				    MinMaxMetricVal[(int)(counter/2)][(int)(counter%2)] = d;
 				    counter++;
 				}		
 //				TESTING THE PYTHON'S OUTPUT
@@ -200,7 +196,7 @@ public class Controller {
 									if(m.length()<40)
 										continue;
 									String[] parts = m.split("\\s+");		
-									metricInput[i]=Double.parseDouble(parts[2]);
+									metricInput[i]=Double.parseDouble(parts[4]);
 									System.out.println(metricInput[i]);
 									i++;
 									if(i>99)

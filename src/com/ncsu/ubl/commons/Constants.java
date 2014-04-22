@@ -40,6 +40,7 @@ public interface Constants {
 	public static final String TRAIN_MEM_LOG_FILE = "train_mem_log_file";
 	public static final String TRAIN_METRIC_LOG_FILE = "train_metric_log_file";
 	public static final String DO_TEST = "do_test";
+	public static final String VM_NAME = "vm_name";
 	
 	public static enum METRIC {
 		MEM(0),
