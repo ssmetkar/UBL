@@ -97,7 +97,7 @@ public class Controller {
 
 		logger.info("Executing python script");
 		
-		if(Controller.getConfig().doTest() != 1)
+		if(Controller.getConfig().getdoTest() != 1)
 		{
 			//Call the TrainDataPreprocess python file to get the normalized Training data
 			MinMaxMetricVal = new double[2][2];
@@ -170,7 +170,10 @@ public class Controller {
 					String metric;
 					String[] line;
 					int i = 0;
-					switch (rankList.getRankList().get(0)) {
+					//New Change - Amit
+					int anomalyMetric = rankList.getRankList().get(0);
+					// 0 = Memory, 1 = CPU
+					switch (anomalyMetric) {
 						case 0: // It is Memory, get Memory data into metricInput
 								metricSource = new File(Controller.getConfig().getMemLogFile());
 								metric = ReadFile.readLast_N_Lines(metricSource, 100);
@@ -203,21 +206,22 @@ public class Controller {
 										break;
 								}
 								break;
-						case 2: // NETTX causing issue
-								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETTX");
-								break;
-						case 3: // NETRX causing issue
-								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETRX");
-								break;
-						case 4: // VBD_OO causing issue
-								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_OO");
-								break;
-						case 5: // VBD_RD causing issue
-								logger.info(System.currentTimeMillis() + " :Abnormal state cause : VBD_RD");
-								break;
-						case 6: // VBD_WR causing issue
-								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_WR");
-								break;
+						//New Change - Amit
+//						case 2: // NETTX causing issue
+//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETTX");
+//								break;
+//						case 3: // NETRX causing issue
+//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETRX");
+//								break;
+//						case 4: // VBD_OO causing issue
+//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_OO");
+//								break;
+//						case 5: // VBD_RD causing issue
+//								logger.info(System.currentTimeMillis() + " :Abnormal state cause : VBD_RD");
+//								break;
+//						case 6: // VBD_WR causing issue
+//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_WR");
+//								break;
 					}
 					
 					// If it is not CPU or MEMORY, Exit!
@@ -240,15 +244,100 @@ public class Controller {
 						logger.info("Markov scaleTo value : "+scaleTo);
 					}
 
-					// code for actually scaling the metric
-					// code for adding 5% padding also
-					//CODE for Live VM Migration
+					//New Change - Amit
+					if (config.getdoTest() == 1)
+					{
+						if (anomalyMetric == 0)
+						{
+							scaleMemory(scaleTo);
+						}
+						else if(anomalyMetric == 1)
+						{
+							scaleCPU(scaleTo);
+						}
+					}
+					
 				}
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
+	
+	//New Change - Amit
+		public void scaleMemory(int scaleToVal)
+		{
+			String vmname = config.getvm_name();
+			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm mem-set "+vmname+ " "+scaleToVal);
+			Process proc;
+			try {
+				proc = p.start();
+				
+				BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+				BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+				
+				String line = "";
+				while ((line = error.readLine()) != null) {
+					String parts[] = line.split(":");
+					if ("Error".equals(parts[0]))
+					{
+						logger.error("Command didn't execute successfully: xm mem-set "+vmname+" "+scaleToVal);
+						break;
+					}
+				}			
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		
+		
+		//New Change - Amit	
+		public void scaleCPU(int scaleToVal)
+		{
+			String vmname = config.getvm_name();
+			int currentCPUCap, scaleToCPUCap;
+			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm sched-credit");
+			Process proc;
+			try {
+				proc = p.start();
+				
+				BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+				BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+				
+				String line = "";
+				
+				while ((line = output.readLine()) != null) {
+					String parts[] = line.split("\\s+");
+					if (vmname.equals(parts[0]))
+					{
+						currentCPUCap=Integer.parseInt(parts[2]);
+						if(scaleToVal > 0 && scaleToVal <= 10)
+							scaleToCPUCap = currentCPUCap - 64;
+						else if(scaleToVal > 85)
+							scaleToCPUCap = currentCPUCap + 256;
+						else
+							scaleToCPUCap = currentCPUCap + 64;
+						
+						p = new ProcessBuilder("/bin/bash","-c","xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
+						proc = p.start();
+						BufferedReader innerOutput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+						BufferedReader innerError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+						while ((line = innerError.readLine()) != null) {
+							parts = line.split(":");
+							if ("Error".equals(parts[0]))
+							{
+								logger.error("Command didn't execute successfully: xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
+								break;
+							}
+						}	
+						break;
+					}
+				}			
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+	
 	
 	public void test()
 	{
@@ -377,7 +466,7 @@ public class Controller {
 		s = in.nextLine();
 		
 		//Finding TP, FP, Accuracy
-		if(Controller.getConfig().doTest() == 1)
+		if(Controller.getConfig().getdoTest() == 1)
 		{
 			logger.info("Calling test method");
 			controller.test();

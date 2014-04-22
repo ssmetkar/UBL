@@ -231,9 +231,13 @@ public class VMConfiguration {
 		return metric_log_file;
 	}
 	
-	public int doTest()
+	public int getdoTest()
 	{
 		return dotest;
+	}
+	public String getvm_name()
+	{
+		return vm_name;
 	}
 }
 

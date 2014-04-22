@@ -56,6 +56,7 @@ public class MarkovChainModel{
 				transition_matrix.set(from_state, to_state, transition_matrix.get(from_state, to_state)+1);
 
 				count[from_state]++;
+				//COMMENT THIS
 				logger.info("FromVal:"+input[i]+" FromBin: "+from_state+
 						" ToVal:"+input[i+1]+" ToBin: "+to_state+
 						" TransitionCount: "+transition_matrix.get(from_state, to_state)+

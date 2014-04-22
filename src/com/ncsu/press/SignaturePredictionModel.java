@@ -68,11 +68,13 @@ public class SignaturePredictionModel {
 			}
 		}
 		double dominatingFreq = dominatingFreqIndex / (double)WINDOWSIZE;
-		System.out.println("########### MaxVal = "+maxVal+"Fd Index = "+dominatingFreqIndex+"Fd = "+dominatingFreq+" ###############");
+		//COMMENT THIS
+		System.out.println("########### MaxVal = "+maxVal+" Fd Index = "+dominatingFreqIndex+"Fd = "+dominatingFreq+" ###############");
 
 		//Set the Pattern Window Size and divide original timeseries into multiple Pattern Windows
 //		int patternWindowSize = 20;
 		int patternWindowSize = (int) Math.ceil(SAMPLERATE/dominatingFreq);
+		//COMMENT THIS
 		System.out.println("PatternWindowSize = "+patternWindowSize);
 		double[][] windows = new double[(int) Math.floor(metricInput.length/patternWindowSize)][patternWindowSize];
 		int window_count=0;
