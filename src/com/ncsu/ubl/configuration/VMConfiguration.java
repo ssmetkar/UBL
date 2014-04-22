@@ -217,6 +217,16 @@ public class VMConfiguration {
 	{
 		return metric_log_file;
 	}
+	
+	public String getTrainMemLogFile()
+	{
+		return mem_log_file;
+	}
+	
+	public String getTrainMetricLogFile()
+	{
+		return metric_log_file;
+	}
 }
 
 
