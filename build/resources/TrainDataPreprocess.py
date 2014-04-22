@@ -8,6 +8,7 @@ start = timeit.time.time()
 metric1 = numpy.array([[0.0]])
 #. Read the log file and get only relevent metrics
 # metric = numpy.array([['MEM_USAGE']])
+# with open('D:\\NCSU\\Android_Workspace\\ADS_Project_Snippets\\src\\newMEM.log', mode='r') as logfile:
 with open('/var/nfs/ubuntupara3_mem_temp.log', mode='r') as logfile:
     for line in logfile:
         data = line.split(' ')
@@ -17,26 +18,34 @@ with open('/var/nfs/ubuntupara3_mem_temp.log', mode='r') as logfile:
 
 #Remove 1st row which was a dummy row
 metric1 = metric1[1:] 
+metric1_num = metric1.shape[0]
 # print("MEM METRIC")
-# print(metric1.shape)
-# print(metric1)
+# print(metric1_num)
 
 
-metric2 = numpy.array([[0.0,0.0,0.0,0.0,0.0,0.0]])
+metric2 = numpy.array([[0.0]])
 #. Read the log file and get only relevent metrics
-# metric = numpy.array([['CPU_USAGE','NETTX','NETRX','VBD_OO','VBD_RD','VBD_WR']])
+# metric = numpy.array([['CPU %']])
+# with open('D:\\NCSU\\Android_Workspace\\ADS_Project_Snippets\\src\\newCPU.log', mode='r') as logfile:
 with open('/var/nfs/Ctemp.log', mode='r') as logfile:
     for line in logfile:
         data = line.split(' ')
-        data = [data[2],data[8],data[10],data[12],data[14],data[16]]
+        data = [data[4]]
         data = [float(s) for s in data]
         metric2 = numpy.append (metric2,[data],0)
 
 #Remove 1st row which was a dummy row
-metric2 = metric2[1:] 
+metric2 = metric2[1:]
+metric2_num = metric2.shape[0] 
 # print("OTHER METRIC")
-# print(metric2.shape)
+# print(metric2_num)
 # print(metric2)
+
+# Ensure same lines of code in both files
+if metric1_num > metric2_num:
+    metric1 = metric1[0:metric2_num]
+elif metric2_num > metric1_num :
+    metric2 = metric2[0:metric1_num]
 
 metric = numpy.append(metric1,metric2,1)
 # print("COMBINED METRIC")
@@ -44,20 +53,10 @@ metric = numpy.append(metric1,metric2,1)
 # print(metric)
  
 # print(metric)
-print(min(a for (a,b,c,d,e,f,g) in metric))
-print(min(b for (a,b,c,d,e,f,g) in metric))
-print(min(c for (a,b,c,d,e,f,g) in metric))
-print(min(d for (a,b,c,d,e,f,g) in metric))
-print(min(e for (a,b,c,d,e,f,g) in metric))
-print(min(f for (a,b,c,d,e,f,g) in metric))
-print(min(g for (a,b,c,d,e,f,g) in metric))
-print(max(a for (a,b,c,d,e,f,g) in metric))
-print(max(b for (a,b,c,d,e,f,g) in metric))
-print(max(c for (a,b,c,d,e,f,g) in metric))
-print(max(d for (a,b,c,d,e,f,g) in metric))
-print(max(e for (a,b,c,d,e,f,g) in metric))
-print(max(f for (a,b,c,d,e,f,g) in metric))
-print(max(g for (a,b,c,d,e,f,g) in metric))
+print(min(a for (a,b) in metric))
+print(min(b for (a,b) in metric))
+print(max(a for (a,b) in metric))
+print(max(b for (a,b) in metric))
  
  
 #. Create a Standardizer
@@ -86,7 +85,8 @@ for i in range(len(ScaledMetricData[1])):
     ScaledMetricData[:,i] = smoothened_row;
  
 #. Code to save the preprocessed data in a file in 2 formats
+# numpy.savetxt('D:\\NCSU\\Android_Workspace\\ADS_Project_Snippets\\src\\newNORMALIZEDDATA.txt', ScaledMetricData,fmt='%.4f',delimiter ='\t')
 numpy.savetxt('/var/nfs/trainingNormalized.txt', ScaledMetricData, fmt='%.4f',delimiter ='\t')
- 
+
 end = timeit.time.time()
 # print ("Time taken to read and store is {0}".format(end-start))
