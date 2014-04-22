@@ -66,7 +66,8 @@ public class Controller {
 			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[12]);
 			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[14]);
 			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);
-			logger.info("Metric read : " + newRow );
+			logger.info("Metric read : " + newRow[0] + " " + newRow[1] + " " + newRow[2] + " " + newRow[3] + " " + newRow[4] + " " + newRow[5] + " "
+										+  newRow[6] );
 			/* SCALING LOGIC
 			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
 			 * X_scaled = X_std * (max - min) + min 
@@ -82,7 +83,8 @@ public class Controller {
 				
 				normalizedNewRow[i] = std * (100 - 0) + 0;
 			}
-			logger.info("Normalized metric : " + normalizedNewRow );
+			logger.info("Normalized : " + normalizedNewRow[0] + " " + normalizedNewRow[1] + " " + normalizedNewRow[2] + " " + normalizedNewRow[3] + " " + normalizedNewRow[4] + " " + normalizedNewRow[5] + " "
+										+  normalizedNewRow[6] );
 		} catch(NullPointerException e){
 			logger.info(e.getMessage());
 			e.printStackTrace();
@@ -96,6 +98,8 @@ public class Controller {
 	{
 		config = VMConfiguration.getInstance();
 		alarmCount=0;
+
+		logger.info("Executing python script");
 		
 		if(Controller.getConfig().doTest() != 1)
 		{
@@ -361,6 +365,7 @@ public class Controller {
 	
 	public static void main(String[] args) {
 		Controller controller = new Controller();
+		String s = new String();
 		controller.initialize();
 		logger.info("Configuration file initialized");
 		
@@ -369,6 +374,11 @@ public class Controller {
 		long end = System.currentTimeMillis();
 		
 		logger.info("Training time  : " + (end - start));
+
+		System.out.println("\nPress enter to start prediction");
+
+		Scanner in = new Scanner(System.in);
+		s = in.nextLine();
 		
 		//Finding TP, FP, Accuracy
 		if(Controller.getConfig().doTest() == 1)

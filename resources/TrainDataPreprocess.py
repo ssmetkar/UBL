@@ -8,7 +8,7 @@ start = timeit.time.time()
 metric1 = numpy.array([[0.0]])
 #. Read the log file and get only relevent metrics
 # metric = numpy.array([['MEM_USAGE']])
-with open('C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log', mode='r') as logfile:
+with open('/var/nfs/ubuntupara3_mem_temp.log', mode='r') as logfile:
     for line in logfile:
         data = line.split(' ')
         data = [data[4]]
@@ -25,7 +25,7 @@ metric1 = metric1[1:]
 metric2 = numpy.array([[0.0,0.0,0.0,0.0,0.0,0.0]])
 #. Read the log file and get only relevent metrics
 # metric = numpy.array([['CPU_USAGE','NETTX','NETRX','VBD_OO','VBD_RD','VBD_WR']])
-with open('C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntuPara.log', mode='r') as logfile:
+with open('/var/nfs/Ctemp.log', mode='r') as logfile:
     for line in logfile:
         data = line.split(' ')
         data = [data[2],data[8],data[10],data[12],data[14],data[16]]
@@ -86,7 +86,7 @@ for i in range(len(ScaledMetricData[1])):
     ScaledMetricData[:,i] = smoothened_row;
  
 #. Code to save the preprocessed data in a file in 2 formats
-numpy.savetxt('C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\normalizedTrainData.txt', ScaledMetricData, fmt='%10.4f')
+numpy.savetxt('/var/nfs/trainingNormalized.txt', ScaledMetricData, fmt='%.4f',delimiter ='\t')
  
 end = timeit.time.time()
 # print ("Time taken to read and store is {0}".format(end-start))
