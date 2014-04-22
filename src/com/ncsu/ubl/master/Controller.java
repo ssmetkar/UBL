@@ -247,8 +247,8 @@ public class Controller {
 					}
 
 					//New Change - Amit
-					if (config.getdoTest() == 1)
-					{
+					/*if (config.getdoTest() == 1)
+					{*/
 						if (anomalyMetric == 0)
 						{
 							scaleMemory(scaleTo);
@@ -257,7 +257,7 @@ public class Controller {
 						{
 							scaleCPU(scaleTo);
 						}
-					}
+					//}
 				}
 			}
 		} catch (Exception e) {
