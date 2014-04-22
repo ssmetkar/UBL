@@ -24,7 +24,7 @@ import com.ncsu.ubl.utility.MetricModelFactory;
 
 public class SOMModel {
 	
-	private static Logger logger = Logger.getLogger(Controller.class);
+	private static Logger logger = Logger.getLogger(SOMModel.class);
 	private DefaultNetwork networkModel;
 	private static double thresholdValue;
 	

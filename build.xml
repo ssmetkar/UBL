@@ -43,6 +43,9 @@
 				<include name="ubl.properties" />
 				<include name="TrainDataPreprocess.py" />
 				<include name="log4j.properties" />
+				<include name="TestDataPreprocess.py" />
+				<include name="testNormalized.txt" />
+				<include name="trainingNormalized.txt" />
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}">

@@ -173,6 +173,7 @@ public class Controller {
 					int i = 0;
 					//New Change - Amit
 					int anomalyMetric = rankList.getRankList().get(0);
+					logger.info("Anamoly metric : " + anomalyMetric);
 					// 0 = Memory, 1 = CPU
 					switch (anomalyMetric) {
 						case 0: // It is Memory, get Memory data into metricInput

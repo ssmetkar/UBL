@@ -43,6 +43,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
+
 import com.ncsu.jknnl.learningFactorFunctional.LearningFactorFunctionalModel;
 import com.ncsu.jknnl.metrics.MetricModel;
 import com.ncsu.jknnl.network.NetworkModel;
@@ -52,6 +54,7 @@ import com.ncsu.jknnl.topology.TopologyModel;
 import com.ncsu.ubl.commons.Constants;
 import com.ncsu.ubl.master.Controller;
 import com.ncsu.ubl.models.RankList;
+import com.ncsu.ubl.models.SOMModel;
 import com.ncsu.ubl.utility.ComputationUtility;
 
 /**
@@ -71,6 +74,7 @@ import com.ncsu.ubl.utility.ComputationUtility;
  */
 public class WTMLearningFunction {
 
+	private static Logger logger = Logger.getLogger(WTMLearningFunction.class); 
 	/**
 	 * reference to metrics
 	 */
@@ -435,6 +439,7 @@ public class WTMLearningFunction {
 				rankList.setState(Constants.ABNORMAL);
 				rankList.setRankList(getRankingList(bestNeuron, thresholdValue));
 			}
+			logger.info("Neighborhood area size : " + tmpDistance);
 		}
 		return rankList;
 	}
