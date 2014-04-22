@@ -1,9 +1,12 @@
 package com.ncsu.press;
 
+import org.apache.log4j.Logger;
 import org.ejml.simple.SimpleMatrix;
 
+import com.ncsu.ubl.configuration.VMConfiguration;
+
 public class MarkovChainModel{
-	
+		private static Logger logger = Logger.getLogger(MarkovChainModel.class); 
 		private Integer num_of_states;
 		private SimpleMatrix transition_matrix;
 		
@@ -24,7 +27,7 @@ public class MarkovChainModel{
 		{
 			if (org_val >100 || org_val<0)
 			{
-				System.out.println("Invalid Number passed to MarkovChainModel.getBinNumber");
+				logger.info("Invalid Number passed to MarkovChainModel.getBinNumber");
 				return -1;
 			}
 			return (int) Math.floor(org_val*num_of_states/100);
@@ -53,7 +56,7 @@ public class MarkovChainModel{
 				transition_matrix.set(from_state, to_state, transition_matrix.get(from_state, to_state)+1);
 
 				count[from_state]++;
-				System.out.println("FromVal:"+input[i]+" FromBin: "+from_state+
+				logger.info("FromVal:"+input[i]+" FromBin: "+from_state+
 						" ToVal:"+input[i+1]+" ToBin: "+to_state+
 						" TransitionCount: "+transition_matrix.get(from_state, to_state)+
 						" TotalCount: "+count[from_state]);
@@ -101,8 +104,8 @@ public class MarkovChainModel{
 				}
 			}
 			long lEndTime = System.currentTimeMillis();
-			System.out.println("From: "+from_state+" In NumberOfSteps: "+number_of_steps+" MaxProbabilityBin: "+maxValIndex+"  MostProbablyTo: "+getOrgValFromBinNumber(maxValIndex));
-			System.out.println("Time taken for prediction = "+(lEndTime-lStartTime));
+			logger.info(("From: "+from_state+" In NumberOfSteps: "+number_of_steps+" MaxProbabilityBin: "+maxValIndex+"  MostProbablyTo: "+getOrgValFromBinNumber(maxValIndex)));
+			logger.info(("Time taken for prediction = "+(lEndTime-lStartTime)));
 			return getOrgValFromBinNumber(maxValIndex);
 		}
 		
@@ -126,7 +129,7 @@ public class MarkovChainModel{
 		public int printTransition_matrix() {
 			if (transition_matrix == null)
 			{
-				System.out.println("The model has not been initialized yet");
+				logger.info(("The model has not been initialized yet"));
 				return -1;
 			}
 			transition_matrix.print();

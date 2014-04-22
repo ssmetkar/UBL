@@ -34,6 +34,11 @@ public interface Constants {
 	public static final String PREDICT_DATA_FILE = "predict_data_file";
 	public static final String LOOK_AHEAD_SIZE = "look_ahead_size";
 	public static final String PREDICT_AHEAD_STEP = "predict_ahead_step";
+	public static final String GAUSSIAN_HEIGHT = "gaussian_height";
+	public static final String MEM_LOG_FILE = "mem_log_file";
+	public static final String METRIC_LOG_FILE = "metric_log_file";
+	public static final String TRAIN_MEM_LOG_FILE = "train_mem_log_file";
+	public static final String TRAIN_METRIC_LOG_FILE = "train_metric_log_file";
 	
 	public static enum METRIC {
 		MEM(0),

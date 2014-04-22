@@ -23,6 +23,7 @@
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${classes.dir}" />
 		<mkdir dir="${resources.dir}" />
+		<mkdir dir="${build.dir}/lib" />
 	</target>
 	
 	<!--target name = "compile" depends = "clean,makedir">
@@ -41,11 +42,17 @@
 			<fileset dir="resources">
 				<include name="ubl.properties" />
 				<include name="TrainDataPreprocess.py" />
+				<include name="log4j.properties" />
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}">
 			<fileset dir="resources">
 				<include name="log4j.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/lib">
+			<fileset dir ="${lib.dir}">
+				<include name = "**/*.jar" />	
 			</fileset>
 		</copy>
 	</target>
@@ -59,7 +66,8 @@
 			<manifest>
 				<attribute name="Main-Class" value="com.ncsu.ubl.master.Controller" />
 			</manifest>
-			<fileset dir="${lib.dir}" includes="**/*.jar" />
+			<exclude name="**/*.jar" />
+			<!--fileset dir="${lib.dir}" includes="**/*.jar" /-->
 		</jar>
 		
 	</target>

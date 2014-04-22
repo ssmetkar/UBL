@@ -6,7 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
-import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.ncsu.jknnl.kohonen.LearningData;
 import com.ncsu.jknnl.kohonen.WTMLearningFunction;
@@ -23,6 +24,7 @@ import com.ncsu.ubl.utility.MetricModelFactory;
 
 public class SOMModel {
 	
+	private static Logger logger = Logger.getLogger(Controller.class);
 	private DefaultNetwork networkModel;
 	private static double thresholdValue;
 	
@@ -76,6 +78,7 @@ public class SOMModel {
 	
 	private DataFold[] initForCrossValidation(int kFoldValue)
 	{
+		logger.info(kFoldValue + "-fold cross-validation");
 		DataFold[] data = new DataFold[kFoldValue];
 		String finalFileName = Controller.getConfig().getLearnFileName();
 		
@@ -127,9 +130,9 @@ public class SOMModel {
 			data[foldCount] = new DataFold(tempList);
 						
 		} catch (FileNotFoundException e) {
-			System.err.println("Unable to locate the input file");
+			logger.error("Unable to locate the input file");
 		} catch (IOException e) {
-			System.err.println("Error while calculating line number");
+			logger.error("Error while calculating line number");
 		}
 		return data;
 	}
@@ -141,6 +144,7 @@ public class SOMModel {
 	 */
 	private double getBestNetworkModel(DataFold[] data)
 	{
+		logger.info("Getting best network model");
 		double thresholdValue[] = new double[data.length];
 		double maxAccuracy = -1,currentAccuracy = 0;
 		int maxAccuracyIndex = 0;
@@ -152,7 +156,7 @@ public class SOMModel {
 		LearningFactorFunctionalModel learnFunctionModel = new ConstantFunctionalFactor(
 				Controller.getConfig().getLearningFactor());
 		NeighbourhoodFunctionModel neighbourModel = new GaussNeighbourhoodFunction(
-				Controller.getConfig().getRadius(),1);
+				Controller.getConfig().getRadius(),Controller.getConfig().getGaussianHeight());
 		
 		for(int itr = 0 ; itr < data.length ; itr++ )
 		{
@@ -179,6 +183,7 @@ public class SOMModel {
 		}
 		
 		this.networkModel = networkModelList[maxAccuracyIndex];
+		logger.info("Max accuracy model threshold value : " + thresholdValue[maxAccuracyIndex]);
 		return thresholdValue[maxAccuracyIndex];
 	}
 	

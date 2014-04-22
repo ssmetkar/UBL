@@ -6,9 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 import com.ncsu.jknnl.metrics.MetricModel;
 import com.ncsu.jknnl.network.DefaultNetwork;
@@ -25,6 +25,8 @@ import com.ncsu.ubl.models.SOMModel;
 import com.ncsu.ubl.utility.TopologyModelFactory;
 import com.ncsu.ubl.utility.ReadFile;
 
+import org.apache.log4j.Logger;
+
 /**
  * This is the main controller class which initiates the learning model 
  * @author Sarang Metkar
@@ -33,7 +35,7 @@ import com.ncsu.ubl.utility.ReadFile;
 
 public class Controller {
 	
-	private static Logger logger = Logger.getLogger("Controller");
+	private static Logger logger = Logger.getLogger(Controller.class);
 	private int alarmCount;
 	private static VMConfiguration config; 
 	private static double[][] MinMaxMetricVal;
@@ -46,14 +48,14 @@ public class Controller {
 		double[] normalizedNewRow = new double[7];
 		
 		try{
-			File file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+			File file = new File(Controller.getConfig().getTrainMemLogFile());
 			String metric = ReadFile.readLast_N_Lines(file, 1);
 			String[] lastline = metric.split("\\n");
 			metric = lastline[lastline.length-1];
 			String[] splited = metric.split("\\s+");
 			newRow[Constants.METRIC.MEM.getValue()] = Double.parseDouble(splited[4]);
 			
-			file = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntuPara.log");
+			file = new File(Controller.getConfig().getTrainMetricLogFile());
 			metric = ReadFile.readLast_N_Lines(file, 1);
 			lastline = metric.split("\\n");
 			metric = lastline[lastline.length-1];
@@ -64,12 +66,11 @@ public class Controller {
 			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[12]);
 			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[14]);
 			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);
-			
+			logger.info("Metric read : " + newRow );
 			/* SCALING LOGIC
 			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
 			 * X_scaled = X_std * (max - min) + min 
 			 */
-//			System.out.println("The normalized data is:");
 			for(int i=0;i<7;i++)
 			{
 				double std;
@@ -80,18 +81,16 @@ public class Controller {
 					std=0;
 				
 				normalizedNewRow[i] = std * (100 - 0) + 0;
-//				System.out.print(normalizedNewRow[i] + "  ");
 			}
+			logger.info("Normalized metric : " + normalizedNewRow );
 		} catch(NullPointerException e){
+			logger.info(e.getMessage());
 			e.printStackTrace();
 		}catch(Exception e){
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
-		
 		return normalizedNewRow;
 	}
-	
-	
 	
 	public void initialize()
 	{
@@ -100,7 +99,7 @@ public class Controller {
 		
 		//Call the TrainDataPreprocess python file to get the normalized Training data
 		MinMaxMetricVal = new double[2][7];
-		ProcessBuilder p = new ProcessBuilder("python","C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\TrainDataPreprocess.py");
+		ProcessBuilder p = new ProcessBuilder("python","./resources/TrainDataPreprocess.py");
 		Process proc;
 		try {
 			proc = p.start();
@@ -123,32 +122,14 @@ public class Controller {
 //			 System.out.println(ligne);
 //			}
 //			System.out.println(output);		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
-		
-		
-		/*for(int i = 1; i <= config.getNumberOfVM(); i++)
-		{
-			TopologyModel topologyModel = TopologyModelFactory
-					.getTopologyModel(config.getTopologyModelType(),
-							config.getRows(), config.getCols(),
-							config.getRadius());
-
-			double maxWeights[] = new double[config.getNumberOfWeights()];
-			
-			for (int j = 0; j < config.getNumberOfWeights(); j++) {
-				maxWeights[j] = config.getMaxWeight();
-			}
-			NetworkModel networkModel = new DefaultNetwork(
-					config.getNumberOfWeights(), maxWeights, topologyModel);
-			VM_model_map.put(config.getIpAddressList().get(i), networkModel);
-		}*/
 	}
 	
 	public void execute()
 	{
+		logger.info("Learning SOM Model");
 		TopologyModel topologyModel = TopologyModelFactory
 			.getTopologyModel(config.getTopologyModelType(),
 					config.getRows(), config.getCols(),
@@ -165,36 +146,21 @@ public class Controller {
 		
 		somModel = new SOMModel(networkModel);
 		somModel.learnModel();
-		//somModel.learn();
-	
-		/*
-		while(true)
-		{
-			try
-			{
-				currentState = somModel.predictState();
-				if(currentState == 1)
-				{
-					//get rank list and inform master node about the alarm and submit the rank list
-				}
-			}
-			catch(Exception e)
-			{
-				break;
-			}
-		}*/
+		logger.info("SOM training completed");
 	}
 	
 	public void launch() {
 		try {
+			logger.info("Predicting state");
 			RankList rankList = somModel.predictState(readNormalizedLastLine());
-
+			logger.info("State predicted : " + rankList.getState());
+			
 			if (rankList.getState() == 0) {
 				alarmCount = 0;
 			} else if (rankList.getState() == 1) {
 				if (++alarmCount >= 2) {
+					logger.info("Alarm raised , count :" + alarmCount);
 					alarmCount++;
-					Scanner scan = null;
 					double metricInput[] = new double[100];
 					int scaleTo = -1;
 					File metricSource = null;
@@ -203,7 +169,7 @@ public class Controller {
 					int i = 0;
 					switch (rankList.getRankList().get(0)) {
 						case 0: // It is Memory, get Memory data into metricInput
-								metricSource = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+								metricSource = new File(Controller.getConfig().getMemLogFile());
 								metric = ReadFile.readLast_N_Lines(metricSource, 100);
 								line = metric.split("\\n");
 								i = 0;
@@ -219,7 +185,7 @@ public class Controller {
 								}
 								break;
 						case 1: // It is CPU, get CPU data into metricInput
-								metricSource = new File("C:\\Users\\amitskatti\\Documents\\GitHub\\UBL\\src\\scripts\\ubuntupara2_mem.log");
+								metricSource = new File(Controller.getConfig().getMetricLogFile());
 								metric = ReadFile.readLast_N_Lines(metricSource, 100);
 								line = metric.split("\\n");
 								i = 0;
@@ -235,19 +201,19 @@ public class Controller {
 								}
 								break;
 						case 2: // NETTX causing issue
-								System.out.println("ALARM: NETTX is going to cause ANOMALY.");
+								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETTX");
 								break;
 						case 3: // NETRX causing issue
-								System.out.println("ALARM: NETRX is going to cause ANOMALY.");
+								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETRX");
 								break;
 						case 4: // VBD_OO causing issue
-								System.out.println("ALARM: VBD_OO is going to cause ANOMALY.");
+								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_OO");
 								break;
 						case 5: // VBD_RD causing issue
-								System.out.println("ALARM: VBD_RD is going to cause ANOMALY.");
+								logger.info(System.currentTimeMillis() + " :Abnormal state cause : VBD_RD");
 								break;
 						case 6: // VBD_WR causing issue
-								System.out.println("ALARM: VBD_WR is going to cause ANOMALY.");
+								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_WR");
 								break;
 					}
 					
@@ -256,7 +222,11 @@ public class Controller {
 						return;
 
 					scaleTo = SignaturePredictionModel.SignatureDrivenPrediction(metricInput);
+					logger.info("Calling PRESS");
+					logger.info("PRESS scaleTo value : "+ scaleTo);
+					
 					if (scaleTo < 0) {
+						logger.info("Calling Markov");
 						/* MarkovChainModel Testing Code */
 						MarkovChainModel MyModel = new MarkovChainModel(40);
 						MyModel.trainMarkovChainModel(metricInput);
@@ -264,6 +234,7 @@ public class Controller {
 						scaleTo = MyModel.predictState(
 								(int) metricInput[metricInput.length - 1],
 								Controller.getConfig().getPredictAheadStep());
+						logger.info("Markov scaleTo value : "+scaleTo);
 					}
 
 					// code for actually scaling the metric
@@ -272,7 +243,7 @@ public class Controller {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -292,7 +263,6 @@ public class Controller {
 			br = new BufferedReader(input);
 			String line = "";
 			cnt = 0;			
-			//Put the expected result as a map of Timestamp, output
 			while( (line = br.readLine()) != null)
 			{
 				tempTable = line.split(Controller.getConfig().getDelimiter());
@@ -309,7 +279,6 @@ public class Controller {
 			line = "";
 			
 			cnt = 0;
-			//Out the actual result as a map of Timestamp, output 
 			while( (line = br.readLine()) != null )
 			{
 				tempTable = line.split(Controller.getConfig().getDelimiter());
@@ -320,21 +289,24 @@ public class Controller {
 				{
 					tempList[temp++] = Double.valueOf(tempTable[i]);
 				}
+				logger.info("Predicting State");
 				RankList rankList = somModel.predictState(tempList);
 				actual.put(cnt, 0);
 				if(rankList.getState() == 1)
 				{
+					
 					for(int start = cnt + 1; (start < out.size()) && (start < cnt + Controller.getConfig().getLookAheadSize()) ; start++)
 					{
 						if(out.get(start) == 2)
 						{
+							logger.info("Abnormal state predicted");
+							logger.info("Rank List :\t");
 							actual.put(cnt, 2);
-							/*Iterator<Integer> it = rankList.getRankList().iterator();
-							System.out.println("");
+							Iterator<Integer> it = rankList.getRankList().iterator();
 							while(it.hasNext())
 							{
-								System.out.println(it.next());
-							}*/
+								logger.info(it.next() + "\t");
+							}
 							break;
 						}
 					}
@@ -369,13 +341,13 @@ public class Controller {
 			true_positive = tp / (tp + fn);
 			false_positive = fp / (fp + tn);
 			accuracy = (tp + tn) / (tp + tn + fp + fn);
-			System.out.println("True positive : " + true_positive);
-			System.out.println("Accuracy : " + accuracy);
-			System.out.println("False positive :" + false_positive);
+			logger.info("True positive : " + true_positive);
+			logger.info("Accuracy : " + accuracy);
+			logger.info("False positive :" + false_positive);
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -387,32 +359,29 @@ public class Controller {
 	public static void main(String[] args) {
 		Controller controller = new Controller();
 		controller.initialize();
-		//Learn Model
+		logger.info("Configuration file initialized");
 		
 		long start = System.currentTimeMillis();
 		controller.execute();
 		long end = System.currentTimeMillis();
-		System.out.println("Time difference :" + (end - start));
-		System.out.println("Training Complete");
+		
+		logger.info("Training time  : " + (end - start));
 		
 		//Finding TP, FP, Accuracy
-		//controller.test();	
+/*		logger.info("Calling test method");
+		controller.test();*/	
 		
-		while(true)
+		/*while(true)
 		{
 			start = System.currentTimeMillis();
-		
 			controller.launch();
-			
 			end = System.currentTimeMillis();
 			
 			try {
 				Thread.sleep(1000 - (end-start));
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Exception thrown by Sleep at while loop of Launch");
-				e.printStackTrace();
+				logger.error("Exception thrown by Sleep at while loop of Launch");
 			}
-		}
+		}*/
 	}
 }

@@ -8,10 +8,15 @@ import java.io.InputStream;
 import java.util.Properties;
 
 
+
+import org.apache.log4j.Logger;
+
 import com.ncsu.ubl.commons.*;
+import com.ncsu.ubl.master.Controller;
 
 public class VMConfiguration {
 	
+	private static Logger logger = Logger.getLogger(VMConfiguration.class);
 	private static final String CONF_FILE = "./resources/ubl.properties";
 	private static VMConfiguration config;
 	
@@ -36,11 +41,16 @@ public class VMConfiguration {
 	private String predictDataFile;
 	private int lookAheadSize;
 	private int predictAheadStep;
-			
+	private int gaussianHeight;
+	private String mem_log_file;
+	private String metric_log_file;
+	private String train_mem_log_file;
+	private String train_metric_log_file;
 	
 
 	private static void loadConfig()
 	{
+	
 		VMConfiguration.config = new VMConfiguration();
 		InputStream conf_file;
 		try {
@@ -67,12 +77,17 @@ public class VMConfiguration {
 			config.normalNeurons = Integer.parseInt(props.getProperty(Constants.NORMAL_NEURONS));
 			config.predictDataFile = props.getProperty(Constants.PREDICT_DATA_FILE);
 			config.lookAheadSize = Integer.parseInt(props.getProperty(Constants.LOOK_AHEAD_SIZE));
-			config.predictAheadStep = Integer.parseInt(props.getProperty(Constants.PREDICT_AHEAD_STEP)); 
+			config.predictAheadStep = Integer.parseInt(props.getProperty(Constants.PREDICT_AHEAD_STEP));
+			config.gaussianHeight = Integer.parseInt(props.getProperty(Constants.GAUSSIAN_HEIGHT));
+			config.mem_log_file  = props.getProperty(Constants.MEM_LOG_FILE);
+			config.metric_log_file = props.getProperty(Constants.METRIC_LOG_FILE);
+			config.train_mem_log_file  = props.getProperty(Constants.TRAIN_MEM_LOG_FILE);
+			config.train_metric_log_file = props.getProperty(Constants.TRAIN_METRIC_LOG_FILE);
 			
 		} catch (FileNotFoundException e) {
-			System.err.println("Error while opening configuration file.");
+			logger.error("Error while opening configuration file");
 		} catch (IOException e) {
-			System.err.println("Error while loading configuration file.");
+			logger.error("Error while loading configuration file");
 		}
 	}
 	
@@ -188,6 +203,20 @@ public class VMConfiguration {
 		return predictAheadStep;
 	}
 	
+	public int getGaussianHeight()
+	{
+		return gaussianHeight;
+	}
+	
+	public String getMemLogFile()
+	{
+		return mem_log_file;
+	}
+	
+	public String getMetricLogFile()
+	{
+		return metric_log_file;
+	}
 }
 
 
