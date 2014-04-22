@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -164,7 +165,7 @@ public class Controller {
 				if (++alarmCount >= 2) {
 					logger.info("Alarm raised , count :" + alarmCount);
 					alarmCount++;
-					double metricInput[] = new double[100];
+					double metricInput[] = new double[1000];
 					int scaleTo = -1;
 					File metricSource = null;
 					String metric;
@@ -176,7 +177,7 @@ public class Controller {
 					switch (anomalyMetric) {
 						case 0: // It is Memory, get Memory data into metricInput
 								metricSource = new File(Controller.getConfig().getMemLogFile());
-								metric = ReadFile.readLast_N_Lines(metricSource, 100);
+								metric = ReadFile.readLast_N_Lines(metricSource, 1000);
 								line = metric.split("\\n");
 								i = 0;
 								for(String m : line){
@@ -184,15 +185,15 @@ public class Controller {
 										continue;
 									String[] parts = m.split("\\s+");		
 									metricInput[i]=Double.parseDouble(parts[4]);
-									System.out.println(metricInput[i]);
+//									System.out.println(metricInput[i]);
 									i++;
-									if(i>99)
+									if(i>999)
 										break;
 								}
 								break;
 						case 1: // It is CPU, get CPU data into metricInput
 								metricSource = new File(Controller.getConfig().getMetricLogFile());
-								metric = ReadFile.readLast_N_Lines(metricSource, 100);
+								metric = ReadFile.readLast_N_Lines(metricSource, 1000);
 								line = metric.split("\\n");
 								i = 0;
 								for(String m : line){
@@ -200,9 +201,9 @@ public class Controller {
 										continue;
 									String[] parts = m.split("\\s+");		
 									metricInput[i]=Double.parseDouble(parts[4]);
-									System.out.println(metricInput[i]);
+//									System.out.println(metricInput[i]);
 									i++;
-									if(i>99)
+									if(i>999)
 										break;
 								}
 								break;
@@ -236,7 +237,7 @@ public class Controller {
 						logger.info("Calling Markov");
 						/* MarkovChainModel Testing Code */
 						MarkovChainModel MyModel = new MarkovChainModel(40);
-						MyModel.trainMarkovChainModel(metricInput);
+						MyModel.trainMarkovChainModel(Arrays.copyOfRange(metricInput, metricInput.length-41, metricInput.length));
 						// MyModel.printTransition_matrix();
 						scaleTo = MyModel.predictState(
 								(int) metricInput[metricInput.length - 1],
@@ -256,7 +257,6 @@ public class Controller {
 							scaleCPU(scaleTo);
 						}
 					}
-					
 				}
 			}
 		} catch (Exception e) {

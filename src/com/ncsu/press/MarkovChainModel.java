@@ -92,7 +92,7 @@ public class MarkovChainModel{
 				result = result.mult(transition_matrix);
 				
 			SimpleMatrix row_result = result.extractVector(true, from_bin);
-			row_result.print();
+//			row_result.print();
 			
 			double maxVal = row_result.get(0, 0);
 			int maxValIndex = 0;

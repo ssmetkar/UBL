@@ -28,7 +28,8 @@ public class SignaturePredictionModel {
 	
 	public static int SignatureDrivenPrediction(double[] metricInput)
 	{
-		int WINDOWSIZE = 100;
+//		int WINDOWSIZE = 100;
+		int WINDOWSIZE = metricInput.length;
 		int SAMPLERATE = 1;
 		double[] fftoutput = new double [WINDOWSIZE*2];
 		Double re,im;
