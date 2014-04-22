@@ -25,12 +25,16 @@ public class MarkovChainModel{
 		
 		public int getBinNumber (double org_val)
 		{
-			if (org_val >100 || org_val<0)
+			if (org_val >100)
 			{
-				logger.info("Invalid Number passed to MarkovChainModel.getBinNumber");
-				return -1;
+				return num_of_states-1;
 			}
-			return (int) Math.floor(org_val*num_of_states/100);
+			else if (org_val <= 0)
+			{
+				return 0;
+			}
+			else
+				return (int) Math.floor(org_val*num_of_states/100);
 		}
 		
 		public int getOrgValFromBinNumber(int bin_number)

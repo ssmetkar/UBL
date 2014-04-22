@@ -268,6 +268,7 @@ public class Controller {
 	//New Change - Amit
 		public void scaleMemory(int scaleToVal)
 		{
+			logger.info("Elastically Scaling Memory Value : " + scaleToVal);
 			String vmname = config.getvm_name();
 			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm mem-set "+vmname+ " "+scaleToVal);
 			Process proc;
@@ -295,6 +296,7 @@ public class Controller {
 		//New Change - Amit	
 		public void scaleCPU(int scaleToVal)
 		{
+			
 			String vmname = config.getvm_name();
 			int currentCPUCap, scaleToCPUCap;
 			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm sched-credit");
@@ -318,6 +320,8 @@ public class Controller {
 							scaleToCPUCap = currentCPUCap + 256;
 						else
 							scaleToCPUCap = currentCPUCap + 64;
+						
+						logger.info("Elastically Scaling CPU value : " + scaleToCPUCap);
 						
 						p = new ProcessBuilder("/bin/bash","-c","xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
 						proc = p.start();
