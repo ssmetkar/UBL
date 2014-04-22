@@ -97,33 +97,36 @@ public class Controller {
 		config = VMConfiguration.getInstance();
 		alarmCount=0;
 		
-		//Call the TrainDataPreprocess python file to get the normalized Training data
-		MinMaxMetricVal = new double[2][7];
-		ProcessBuilder p = new ProcessBuilder("python","./resources/TrainDataPreprocess.py");
-		Process proc;
-		try {
-			proc = p.start();
-			
-			BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-			
-			String ligne = "";
-			int counter = 0;
-			
-			while ((ligne = output.readLine()) != null) {
-				if(counter>13)
-					break;
-			    Double d = Double.parseDouble(ligne);
-			    MinMaxMetricVal[(int)(counter/7)][(int)(counter%7)] = d;
-			    counter++;
-			}		
-//			TESTING THE PYTHON'S OUTPUT
-//			while ((ligne = error.readLine()) != null) {
-//			 System.out.println(ligne);
-//			}
-//			System.out.println(output);		
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+		if(Controller.getConfig().doTest() != 1)
+		{
+			//Call the TrainDataPreprocess python file to get the normalized Training data
+			MinMaxMetricVal = new double[2][7];
+			ProcessBuilder p = new ProcessBuilder("python","./resources/TrainDataPreprocess.py");
+			Process proc;
+			try {
+				proc = p.start();
+				
+				BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+				BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+				
+				String ligne = "";
+				int counter = 0;
+				
+				while ((ligne = output.readLine()) != null) {
+					if(counter>13)
+						break;
+				    Double d = Double.parseDouble(ligne);
+				    MinMaxMetricVal[(int)(counter/7)][(int)(counter%7)] = d;
+				    counter++;
+				}		
+//				TESTING THE PYTHON'S OUTPUT
+//				while ((ligne = error.readLine()) != null) {
+//				 System.out.println(ligne);
+//				}
+//				System.out.println(output);		
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
 		}
 	}
 	
@@ -368,20 +371,25 @@ public class Controller {
 		logger.info("Training time  : " + (end - start));
 		
 		//Finding TP, FP, Accuracy
-/*		logger.info("Calling test method");
-		controller.test();*/	
-		
-		/*while(true)
+		if(Controller.getConfig().doTest() == 1)
 		{
-			start = System.currentTimeMillis();
-			controller.launch();
-			end = System.currentTimeMillis();
-			
-			try {
-				Thread.sleep(1000 - (end-start));
-			} catch (InterruptedException e) {
-				logger.error("Exception thrown by Sleep at while loop of Launch");
+			logger.info("Calling test method");
+			controller.test();
+		}
+		else
+		{
+			while(true)
+			{
+				start = System.currentTimeMillis();
+				controller.launch();
+				end = System.currentTimeMillis();
+				
+				try {
+					Thread.sleep(1000 - (end-start));
+				} catch (InterruptedException e) {
+					logger.error("Exception thrown by Sleep at while loop of Launch");
+				}
 			}
-		}*/
+		}
 	}
 }
