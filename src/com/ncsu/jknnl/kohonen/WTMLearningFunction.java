@@ -632,6 +632,9 @@ public class WTMLearningFunction {
 		return normalNeurons;
 	}
 
+	/*
+	 * Method the find model accuracy 
+	 */
 	public double findModelAccuracy(ArrayList<double[]> testData,
 			double thresholdValue) {
 
@@ -642,19 +645,6 @@ public class WTMLearningFunction {
 
 		for (double[] data : testData) {
 			state = predictTest(data, thresholdValue);
-			
-			/*
-			 * bestNeuron = getBestNeuron(data); TreeMap neighboorhood =
-			 * topology.getNeighbourhood(bestNeuron); Iterator it =
-			 * neighboorhood.keySet().iterator(); tmpDistance = 0; while
-			 * (it.hasNext()) { neighborNeuron = (Integer) it.next();
-			 * tmpDistance += ComputationUtility.calculateDistance(
-			 * networkModel.getNeuron(bestNeuron),
-			 * networkModel.getNeuron(neighborNeuron)); }
-			 * 
-			 * if (tmpDistance >= thresholdValue) output[itr++] = 1; else
-			 * output[itr++] = 0;
-			 */
 
 			if (state == Constants.NORMAL)
 				output[itr++] = 0;
@@ -664,6 +654,9 @@ public class WTMLearningFunction {
 		return calculateAccuracy(actual, output);
 	}
 
+	/*
+	 * Helper method to calculate accuracy while generating best Network Model
+	 */
 	private double calculateAccuracy(double[] actual, double[] output) {
 		double accuracy = 0;
 		double tp = 0, fp = 0, tn = 0, fn = 0;

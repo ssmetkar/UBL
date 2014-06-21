@@ -1,6 +1,7 @@
 package com.ncsu.ubl.models;
 
 import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,6 +23,10 @@ import com.ncsu.ubl.master.Controller;
 import com.ncsu.ubl.utility.ComputationUtility;
 import com.ncsu.ubl.utility.MetricModelFactory;
 
+/**
+ * Class which has implementation for training and prediction algorithm
+ * @author Sarang Metkar
+ */
 public class SOMModel {
 	
 	private static Logger logger = Logger.getLogger(SOMModel.class);
@@ -32,11 +37,17 @@ public class SOMModel {
 		this.networkModel = (DefaultNetwork)networkModel;
 	}
 
+	/*
+	 * Called when training the SOM model for actual data
+	 */
 	public void learnModel() {
 		DataFold[] kFoldedData = initForCrossValidation(Controller.getConfig().getKFoldValue());		
 		thresholdValue = getBestNetworkModel(kFoldedData);
 	}
 	
+	/*
+	 * Called when training the SOM model for test data
+	 */
 	public void learn()
 	{
 		MetricModel metricModel = MetricModelFactory.getMetricModel(Controller
@@ -56,10 +67,12 @@ public class SOMModel {
 		learningFunction.learn();
 	}
 	
+	/*
+	 * Method to determine the state of system using last metric read
+	 */
 	public RankList predictState(double metricVector[]){
 		
 		RankList currentState = null;
-		//Get data from somewhere and use it for predicting the state
 		
 		MetricModel metricModel = MetricModelFactory.getMetricModel(Controller
 				.getConfig().getTrainingMetricType());
@@ -76,6 +89,9 @@ public class SOMModel {
 		return currentState;
 	}
 	
+	/*
+	 * Method to perform K-fold cross validation to select the best SOM Model 
+	 */
 	private DataFold[] initForCrossValidation(int kFoldValue)
 	{
 		logger.info(kFoldValue + "-fold cross-validation");
@@ -137,10 +153,8 @@ public class SOMModel {
 		return data;
 	}
 
-	/**
-	 * 
-	 * @param data :- length equal to value of K
-	 * @return
+	/*
+	 * Method which generates the best SOM model
 	 */
 	private double getBestNetworkModel(DataFold[] data)
 	{
@@ -214,6 +228,9 @@ public class SOMModel {
 		return test;
 	}
 	
+	/*
+	 * Helper method to get test data in K-fold cross validation
+	 */
 	private DataFold[] getTrainData(DataFold[] data, int test_index)
 	{
 		DataFold[] trainingData = new DataFold[data.length - 1];

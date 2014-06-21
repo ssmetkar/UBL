@@ -36,8 +36,11 @@ public class Controller {
 	private int alarmCount;
 	private static VMConfiguration config; 
 	private static double[][] MinMaxMetricVal;
-	//private Map<String,NetworkModel> VM_model_map;
 	private SOMModel somModel;
+	
+	/*
+	 * Method to read the last line of file containing metric
+	 */
 	
 	public double[] readNormalizedLastLine()
 	{
@@ -58,18 +61,7 @@ public class Controller {
 			metric = lastline[lastline.length-1];
 			splited = metric.split("\\s+");
 			newRow[Constants.METRIC.CPU.getValue()] = Double.parseDouble(splited[4]);
-			/*newRow[Constants.METRIC.NETTX.getValue()] = Double.parseDouble(splited[8]);
-			newRow[Constants.METRIC.NETRX.getValue()] = Double.parseDouble(splited[10]);
-			newRow[Constants.METRIC.VBD_OO.getValue()] = Double.parseDouble(splited[12]);
-			newRow[Constants.METRIC.VBD_RD.getValue()] = Double.parseDouble(splited[14]);
-			newRow[Constants.METRIC.VBD_WR.getValue()] = Double.parseDouble(splited[16]);*/
-			/*logger.info("Metric read : " + newRow[0] + " " + newRow[1] + " " + newRow[2] + " " + newRow[3] + " " + newRow[4] + " " + newRow[5] + " "
-										+  newRow[6] );*/
 			logger.info("Metric read : " + newRow[0] + " " + newRow[1]);
-			/* SCALING LOGIC
-			 * X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
-			 * X_scaled = X_std * (max - min) + min 
-			 */
 			for(int i=0;i<2;i++)
 			{
 				double std;
@@ -91,6 +83,9 @@ public class Controller {
 		return normalizedNewRow;
 	}
 	
+	/*
+	 * Method to initialize configuration file and get normalized data file
+	 */
 	public void initialize()
 	{
 		config = VMConfiguration.getInstance();
@@ -120,17 +115,15 @@ public class Controller {
 				    MinMaxMetricVal[(int)(counter/2)][(int)(counter%2)] = d;
 				    counter++;
 				}		
-//				TESTING THE PYTHON'S OUTPUT
-//				while ((ligne = error.readLine()) != null) {
-//				 System.out.println(ligne);
-//				}
-//				System.out.println(output);		
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
 		}
 	}
 	
+	/*
+	 * Method which starts the learning/training of SOM model
+	 */
 	public void execute()
 	{
 		logger.info("Learning SOM Model");
@@ -153,11 +146,14 @@ public class Controller {
 		logger.info("SOM training completed");
 	}
 	
+	/*
+	 * Method which has implementation for prediction of normal/abnormal state
+	 */
+	
 	public void launch() {
 		try {
-			logger.info("Predicting state");
 			RankList rankList = somModel.predictState(readNormalizedLastLine());
-			logger.info("State predicted : " + rankList.getState());
+			logger.info(System.currentTimeMillis() + ": State predicted : " + rankList.getState());
 			
 			if (rankList.getState() == 0) {
 				alarmCount = 0;
@@ -171,10 +167,8 @@ public class Controller {
 					String metric;
 					String[] line;
 					int i = 0;
-					//New Change - Amit
 					int anomalyMetric = rankList.getRankList().get(0);
 					logger.info("Anamoly metric : " + anomalyMetric);
-					// 0 = Memory, 1 = CPU
 					switch (anomalyMetric) {
 						case 0: // It is Memory, get Memory data into metricInput
 								metricSource = new File(Controller.getConfig().getMemLogFile());
@@ -186,7 +180,6 @@ public class Controller {
 										continue;
 									String[] parts = m.split("\\s+");		
 									metricInput[i]=Double.parseDouble(parts[4]);
-//									System.out.println(metricInput[i]);
 									i++;
 									if(i>999)
 										break;
@@ -202,28 +195,11 @@ public class Controller {
 										continue;
 									String[] parts = m.split("\\s+");		
 									metricInput[i]=Double.parseDouble(parts[4]);
-//									System.out.println(metricInput[i]);
 									i++;
 									if(i>999)
 										break;
 								}
 								break;
-						//New Change - Amit
-//						case 2: // NETTX causing issue
-//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETTX");
-//								break;
-//						case 3: // NETRX causing issue
-//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : NETRX");
-//								break;
-//						case 4: // VBD_OO causing issue
-//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_OO");
-//								break;
-//						case 5: // VBD_RD causing issue
-//								logger.info(System.currentTimeMillis() + " :Abnormal state cause : VBD_RD");
-//								break;
-//						case 6: // VBD_WR causing issue
-//								logger.info(System.currentTimeMillis() + " :Abnormal state cause  : VBD_WR");
-//								break;
 					}
 					
 					// If it is not CPU or MEMORY, Exit!
@@ -265,85 +241,90 @@ public class Controller {
 		}
 	}
 	
-	//New Change - Amit
-		public void scaleMemory(int scaleToVal)
-		{
-			logger.info("Elastically Scaling Memory Value : " + scaleToVal);
-			String vmname = config.getvm_name();
-			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm mem-set "+vmname+ " "+scaleToVal);
-			Process proc;
-			try {
-				proc = p.start();
-				
-				BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-				BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-				
-				String line = "";
-				while ((line = error.readLine()) != null) {
-					String parts[] = line.split(":");
-					if ("Error".equals(parts[0]))
-					{
-						logger.error("Command didn't execute successfully: xm mem-set "+vmname+" "+scaleToVal);
-						break;
-					}
-				}			
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
-		}
-		
-		
-		//New Change - Amit	
-		public void scaleCPU(int scaleToVal)
-		{
+	/*
+	 * Method to scale Memory when Memory is the faulty metric
+	 */
+	public void scaleMemory(int scaleToVal)
+	{
+		logger.info("Elastically Scaling Memory Value : " + scaleToVal);
+		String vmname = config.getvm_name();
+		ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm mem-set "+vmname+ " "+scaleToVal);
+		Process proc;
+		try {
+			proc = p.start();
 			
-			String vmname = config.getvm_name();
-			int currentCPUCap, scaleToCPUCap;
-			ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm sched-credit");
-			Process proc;
-			try {
-				proc = p.start();
-				
-				BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-				BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-				
-				String line = "";
-				
-				while ((line = output.readLine()) != null) {
-					String parts[] = line.split("\\s+");
-					if (vmname.equals(parts[0]))
-					{
-						currentCPUCap=Integer.parseInt(parts[2]);
-						if(scaleToVal > 0 && scaleToVal <= 10)
-							scaleToCPUCap = currentCPUCap - 64;
-						else if(scaleToVal > 85)
-							scaleToCPUCap = currentCPUCap + 256;
-						else
-							scaleToCPUCap = currentCPUCap + 64;
-						
-						logger.info("Elastically Scaling CPU value : " + scaleToCPUCap);
-						
-						p = new ProcessBuilder("/bin/bash","-c","xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
-						proc = p.start();
-						BufferedReader innerOutput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-						BufferedReader innerError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-						while ((line = innerError.readLine()) != null) {
-							parts = line.split(":");
-							if ("Error".equals(parts[0]))
-							{
-								logger.error("Command didn't execute successfully: xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
-								break;
-							}
-						}	
-						break;
-					}
-				}			
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
+			BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+			
+			String line = "";
+			while ((line = error.readLine()) != null) {
+				String parts[] = line.split(":");
+				if ("Error".equals(parts[0]))
+				{
+					logger.error("Command didn't execute successfully: xm mem-set "+vmname+" "+scaleToVal);
+					break;
+				}
+			}			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
+	}
+		
+	/*
+	 * Method to scale CPU metric when CPU is the faulty metric
+	 */
+	public void scaleCPU(int scaleToVal)
+	{
+		
+		String vmname = config.getvm_name();
+		int currentCPUCap, scaleToCPUCap;
+		ProcessBuilder p = new ProcessBuilder("/bin/bash","-c","xm sched-credit");
+		Process proc;
+		try {
+			proc = p.start();
+			
+			BufferedReader output = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			BufferedReader error = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+			
+			String line = "";
+			
+			while ((line = output.readLine()) != null) {
+				String parts[] = line.split("\\s+");
+				if (vmname.equals(parts[0]))
+				{
+					currentCPUCap=Integer.parseInt(parts[2]);
+					if(scaleToVal > 0 && scaleToVal <= 10)
+						scaleToCPUCap = currentCPUCap - 64;
+					else if(scaleToVal > 85)
+						scaleToCPUCap = currentCPUCap + 256;
+					else
+						scaleToCPUCap = currentCPUCap + 64;
+					
+					logger.info("Elastically Scaling CPU value : " + scaleToCPUCap);
+					
+					p = new ProcessBuilder("/bin/bash","-c","xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
+					proc = p.start();
+					BufferedReader innerOutput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+					BufferedReader innerError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+					while ((line = innerError.readLine()) != null) {
+						parts = line.split(":");
+						if ("Error".equals(parts[0]))
+						{
+							logger.error("Command didn't execute successfully: xm sched-credit -d "+vmname+" -w "+scaleToCPUCap);
+							break;
+						}
+					}	
+					break;
+				}
+			}			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
-	
+	/*
+	 * Method to find the accuracy, TPR and FPR using test data
+	 */
 	public void test()
 	{
 		FileReader input;
@@ -386,7 +367,6 @@ public class Controller {
 				{
 					tempList[temp++] = Double.valueOf(tempTable[i]);
 				}
-				logger.info("Predicting State");
 				RankList rankList = somModel.predictState(tempList);
 				actual.put(cnt, 0);
 				if(rankList.getState() == 1)
@@ -397,13 +377,14 @@ public class Controller {
 						if(out.get(start) == 2)
 						{
 							logger.info("Abnormal state predicted");
-							logger.info("Rank List :\t");
+							String tempStr = "Rank List :\t";
 							actual.put(cnt, 2);
 							Iterator<Integer> it = rankList.getRankList().iterator();
 							while(it.hasNext())
 							{
-								logger.info(it.next() + "\t");
+								tempStr += it.next() + "\t";
 							}
+							logger.info(tempStr);
 							break;
 						}
 					}
@@ -464,8 +445,8 @@ public class Controller {
 		long end = System.currentTimeMillis();
 		
 		logger.info("Training time  : " + (end - start));
-
-		System.out.println("\nPress enter to start prediction");
+		System.out.println("SOM model learned");
+		System.out.println("Press enter to start prediction");
 
 		Scanner in = new Scanner(System.in);
 		s = in.nextLine();

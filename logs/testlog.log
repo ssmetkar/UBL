@@ -1,0 +1,21 @@
+2014-04-21 03:58:50,438 - com.ncsu.ubl.master.Controller - INFO - Configuration file initialized
+2014-04-21 03:58:54,276 - com.ncsu.ubl.master.Controller - INFO - Time Difference : 3834
+2014-04-21 03:58:54,276 - com.ncsu.ubl.master.Controller - INFO - Training Complete
+2014-04-21 03:58:54,277 - com.ncsu.ubl.master.Controller - INFO - Calling test method
+2014-04-21 03:58:54,389 - com.ncsu.ubl.master.Controller - INFO - True positive : 0.17647058823529413
+2014-04-21 03:58:54,390 - com.ncsu.ubl.master.Controller - INFO - Accuracy : 0.8816689466484268
+2014-04-21 03:58:54,390 - com.ncsu.ubl.master.Controller - INFO - False positive :0.09284195605953224
+2014-04-21 04:02:36,174 - com.ncsu.ubl.master.Controller - INFO - Configuration file initialized
+2014-04-21 04:02:40,025 - com.ncsu.ubl.master.Controller - INFO - Time Difference : 3847
+2014-04-21 04:02:40,025 - com.ncsu.ubl.master.Controller - INFO - Training Complete
+2014-04-21 04:02:40,026 - com.ncsu.ubl.master.Controller - INFO - Calling test method
+2014-04-21 04:02:40,160 - com.ncsu.ubl.master.Controller - INFO - True positive : 0.29411764705882354
+2014-04-21 04:02:40,160 - com.ncsu.ubl.master.Controller - INFO - Accuracy : 0.8967168262653898
+2014-04-21 04:02:40,160 - com.ncsu.ubl.master.Controller - INFO - False positive :0.0815024805102764
+2014-04-21 04:03:43,808 - com.ncsu.ubl.master.Controller - INFO - Configuration file initialized
+2014-04-21 04:03:47,662 - com.ncsu.ubl.master.Controller - INFO - Time Difference : 3850
+2014-04-21 04:03:47,662 - com.ncsu.ubl.master.Controller - INFO - Training Complete
+2014-04-21 04:03:47,663 - com.ncsu.ubl.master.Controller - INFO - Calling test method
+2014-04-21 04:03:47,780 - com.ncsu.ubl.master.Controller - INFO - True positive : 0.47058823529411764
+2014-04-21 04:03:47,780 - com.ncsu.ubl.master.Controller - INFO - Accuracy : 0.9035567715458276
+2014-04-21 04:03:47,781 - com.ncsu.ubl.master.Controller - INFO - False positive :0.08079376328844791

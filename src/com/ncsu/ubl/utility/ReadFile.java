@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * Class to read the last n lines of a file
+ * @author siddhivinayak
+ *
+ */
 public final class ReadFile {
 
 	public static String readLast_N_Lines(File file, int numberOfLines)

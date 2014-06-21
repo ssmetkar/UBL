@@ -1,5 +1,10 @@
 package com.ncsu.ubl.commons;
 
+/**
+ * Class containing all Constant values
+ * @author siddhivinayak
+ *
+ */
 public interface Constants {
 	public static final String NUMBER_OF_VM = "number_of_vm";
 	public static final String IP_ADDRESS = "ip_address";
@@ -41,6 +46,9 @@ public interface Constants {
 	public static final String TRAIN_METRIC_LOG_FILE = "train_metric_log_file";
 	public static final String DO_TEST = "do_test";
 	public static final String VM_NAME = "vm_name";
+	public static final String PREDICT_FILE = "predict_file";
+	public static final String ANN_FILE = "ann_file";
+	public static final String FAULT = "fault";
 	
 	public static enum METRIC {
 		MEM(0),

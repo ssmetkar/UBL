@@ -7,6 +7,9 @@ import com.ncsu.jknnl.metrics.MetricModel;
 
 public class MetricModelFactory {
 	
+	/*
+	 * Factory method to get MetricModel
+	 */
 	public static MetricModel getMetricModel(String metricModelType)
 	{
 		MetricModel metricModel = null;

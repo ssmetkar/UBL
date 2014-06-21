@@ -48,7 +48,10 @@ public class VMConfiguration {
 	private String train_metric_log_file;
 	private int dotest;
 	private String vm_name;
-
+	private String annotateFile;
+	private String predictFile;
+	private int faultInterval;
+	
 	private static void loadConfig()
 	{
 	
@@ -86,6 +89,9 @@ public class VMConfiguration {
 			config.train_metric_log_file = props.getProperty(Constants.TRAIN_METRIC_LOG_FILE);
 			config.dotest = Integer.parseInt(props.getProperty(Constants.DO_TEST));
 			config.vm_name = props.getProperty(Constants.VM_NAME);
+			config.predictFile = props.getProperty(Constants.PREDICT_FILE);
+			config.annotateFile = props.getProperty(Constants.ANN_FILE);
+			config.faultInterval = Integer.parseInt(props.getProperty(Constants.FAULT));
 			
 		} catch (FileNotFoundException e) {
 			logger.error("Error while opening configuration file");
@@ -238,6 +244,21 @@ public class VMConfiguration {
 	public String getvm_name()
 	{
 		return vm_name;
+	}
+	
+	public String getAnnotateFile()
+	{
+		return annotateFile;
+	}
+	
+	public String getPredictFile()
+	{
+		return predictFile;
+	}
+	
+	public int getFaultInt()
+	{
+		return faultInterval;
 	}
 }
 

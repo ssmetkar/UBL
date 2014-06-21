@@ -14,8 +14,16 @@ import com.ncsu.jknnl.topology.MatrixTopology;
 import com.ncsu.jknnl.topology.TopologyModel;
 import com.ncsu.ubl.master.Controller;
 
+/**
+ * Helper class to perform computation
+ * @author Sarang Metkar
+ *
+ */
 public class ComputationUtility {
 	
+	/*
+	 * Method to calculate threshold value during learning phase
+	 */
 	public static double calculateThreshold(NetworkModel networkModel)
 	{
 		double thresholdValue = 0;
@@ -60,6 +68,9 @@ public class ComputationUtility {
 		return thresholdValue; 
 	}
 	
+	/*
+	 * Implementation of Manhattan distance calculation
+	 */
 	public static double calculateDistance(NeuronModel mainNeuron, NeuronModel neighbourNeuron)
 	{
 		double sum_of_weights = 0;

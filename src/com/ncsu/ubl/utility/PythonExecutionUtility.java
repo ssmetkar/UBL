@@ -8,6 +8,11 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import com.ncsu.ubl.master.Controller;
 
+/**
+ * Class to call Python code from Java Code 
+ * @author Amit Katti
+ *
+ */
 public class PythonExecutionUtility {
 	
 	public static void main(String[] args) {

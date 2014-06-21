@@ -48,7 +48,7 @@ package com.ncsu.jknnl.topology;
 public class GaussNeighbourhoodFunction implements NeighbourhoodFunctionModel{
     
     private double r;   // radius
-    private double h;
+    private double h;	// height
     
     /**
      * Creates a new instance of GaussNeighbourhoodFunction with
